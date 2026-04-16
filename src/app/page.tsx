@@ -3,26 +3,12 @@
 import HeroSection from "@/components/HeroSection";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
+import type { Product } from "@/lib/types";
+
 const MARQUEE_TEXT =
   "FREE SHIPPING OVER $75 — LIMITED DROPS — NEW GEAR EVERY FRIDAY — CANDY SKULL CULTURE — ";
 
-interface ProductsTypes {
-  id: string;
-  name: string;
-  price: number;
-  originalPrice?: number;
-  category: string;
-  tag: string;
-  image: string;
-  rating?: number;
-  reviews?: number;
-  stock: number;
-  colors: string[];
-  sizes: string[];
-  description: string;
-}
-
-const featuredProducts: ProductsTypes[] = [
+const featuredProducts: Product[] = [
   {
     id: "1",
     name: "Neon Reaper Hoodie",
