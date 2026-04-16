@@ -1,0 +1,106 @@
+/* ─── Google Fonts ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+@import "tailwindcss";
+
+/* ─── Tailwind v4 Theme ────────────────────────────────────── */
+@theme inline {
+  --color-skull-black:       #050008;
+  --color-skull-dark:        #0d0016;
+  --color-skull-card:        #130020;
+  --color-skull-neon-pink:   #ff2d78;
+  --color-skull-neon-purple: #b026ff;
+  --color-skull-neon-blue:   #00d4ff;
+  --color-skull-neon-gold:   #ffd700;
+  --color-skull-text:        #f0e6ff;
+  --color-skull-muted:       #9b8ab5;
+  --color-skull-border:      #2a1040;
+
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+}
+
+/* ─── Base ─────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #050008;
+  color: #f0e6ff;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ─── Utility classes ──────────────────────────────────────── */
+.glow-pink {
+  text-shadow: 0 0 20px #ff2d78, 0 0 40px #ff2d78aa;
+}
+.glow-purple {
+  text-shadow: 0 0 20px #b026ff, 0 0 40px #b026ffaa;
+}
+.glow-blue {
+  text-shadow: 0 0 20px #00d4ff, 0 0 40px #00d4ffaa;
+}
+.card-glow {
+  box-shadow: 0 0 30px #b026ff22, inset 0 0 30px #b026ff08;
+}
+.border-neon {
+  border: 1px solid #b026ff44;
+}
+.gradient-skull {
+  background: linear-gradient(135deg, #ff2d78, #b026ff, #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.font-display {
+  font-family: 'Bebas Neue', sans-serif;
+}
+.font-mono-price {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ─── Animations ───────────────────────────────────────────── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes pulse-glow {
+  0%, 100% { transform: scale(1.0);   opacity: 0.07; }
+  50%       { transform: scale(1.03); opacity: 0.12; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounceOnce {
+  0%, 100% { transform: translateY(0); }
+  30%       { transform: translateY(-6px); }
+  60%       { transform: translateY(-3px); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+.animate-bounce-once {
+  animation: bounceOnce 0.6s ease;
+}
+
+/* ─── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0d0016; }
+::-webkit-scrollbar-thumb { background: #2a1040; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #b026ff44; }
