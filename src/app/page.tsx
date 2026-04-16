@@ -3,58 +3,92 @@
 import HeroSection from "@/components/HeroSection";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
-
 const MARQUEE_TEXT =
   "FREE SHIPPING OVER $75 — LIMITED DROPS — NEW GEAR EVERY FRIDAY — CANDY SKULL CULTURE — ";
 
+interface ProductsTypes {
+  id: string;
+  name: string;
+  price: number;
+  originalPrice?: number;
+  category: string;
+  tag: string;
+  image: string;
+  rating?: number;
+  reviews?: number;
+  stock: number;
+  colors: string[];
+  sizes: string[];
+  description: string;
+}
+
+const featuredProducts: ProductsTypes[] = [
+  {
+    id: "1",
+    name: "Neon Reaper Hoodie",
+    price: 89.99,
+    originalPrice: 120.0,
+    category: "apparel",
+    tag: "BESTSELLER",
+    image: "https://picsum.photos/seed/neon-reaper-hoodie/400/400",
+    rating: 4.8,
+    reviews: 342,
+    stock: 12,
+    colors: ["#ff2d78", "#b026ff"],
+    sizes: ["S", "M", "L", "XL"],
+    description:
+      "The ultimate statement piece for every gamer. Deep neon pink trim and heavyweight fleece.",
+  },
+  {
+    id: "2",
+    name: "Skull Drops Mousepad XL",
+    price: 34.99,
+    category: "peripherals",
+    tag: "NEW",
+    image: "https://picsum.photos/seed/skull-drops-mousepad/400/400",
+    rating: 4.6,
+    reviews: 218,
+    stock: 25,
+    colors: ["#050008", "#2a1040"],
+    sizes: ["XL (900x400mm)", "XXL (1200x600mm)"],
+    description:
+      "Precision micro-woven surface for pro-grade tracking. Neon pink stitched edges.",
+  },
+  {
+    id: "3",
+    name: "Calavera Keycap Set",
+    price: 59.99,
+    originalPrice: 79.99,
+    category: "peripherals",
+    tag: "SALE",
+    image: "https://picsum.photos/seed/calavera-keycaps/400/400",
+    rating: 4.9,
+    reviews: 507,
+    stock: 8,
+    colors: ["#ff2d78", "#b026ff", "#00d4ff"],
+    sizes: ["Full Kit", "TKL Kit"],
+    description:
+      "Hand-painted candy skull legends on double-shot PBT keycaps. Haunt the keyboard.",
+  },
+  {
+    id: "5",
+    name: "Ghost Rider Tee",
+    price: 39.99,
+    category: "apparel",
+    tag: "NEW",
+    image: "https://picsum.photos/seed/ghost-rider-tee/400/400",
+    rating: 4.7,
+    reviews: 189,
+    stock: 45,
+    colors: ["#050008", "#ffffff"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    description:
+      "100% ring-spun cotton with a faded vintage skull graphic. Perfect for long sessions.",
+  },
+];
+
 export default function HomePage() {
   // PRODUCTS HARDCODED TO REMOVE JS LOGIC
-  const featuredProducts = [
-    {
-      id: "1",
-      name: "Neon Reaper Hoodie",
-      price: 89.99,
-      originalPrice: 120.00,
-      category: "apparel",
-      tag: "BESTSELLER",
-      image: "https://picsum.photos/seed/neon-reaper-hoodie/400/400",
-      rating: 4.8,
-      reviews: 342
-    },
-    {
-      id: "2",
-      name: "Skull Drops Mousepad XL",
-      price: 34.99,
-      originalPrice: null,
-      category: "peripherals",
-      tag: "NEW",
-      image: "https://picsum.photos/seed/skull-drops-mousepad/400/400",
-      rating: 4.6,
-      reviews: 218
-    },
-    {
-      id: "3",
-      name: "Calavera Keycap Set",
-      price: 59.99,
-      originalPrice: 79.99,
-      category: "peripherals",
-      tag: "SALE",
-      image: "https://picsum.photos/seed/calavera-keycaps/400/400",
-      rating: 4.9,
-      reviews: 507
-    },
-    {
-      id: "5",
-      name: "Ghost Rider Tee",
-      price: 39.99,
-      originalPrice: null,
-      category: "apparel",
-      tag: "NEW",
-      image: "https://picsum.photos/seed/ghost-rider-tee/400/400",
-      rating: 4.7,
-      reviews: 189
-    }
-  ] as any[];
 
   return (
     <>
