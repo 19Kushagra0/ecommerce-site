@@ -63,7 +63,7 @@ export default function ProductPage() {
             Shop
           </Link>
           <span>/</span>
-          <span className="text-skull-text">{product.name}</span>
+          <span className="text-skull-text">{products.name}</span>
         </nav>
 
         {/* Main product grid */}
@@ -74,9 +74,9 @@ export default function ProductPage() {
               {/* Use the Image component once you have a real source */}
               <span className="text-xl">PRODUCT IMAGE SKELETON</span>
             </div>
-            {product.tag && (
+            {products.tag && (
               <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold tracking-widest bg-skull-neon-pink text-white z-10">
-                {product.tag}
+                {products.tag}
               </span>
             )}
           </div>
@@ -87,7 +87,7 @@ export default function ProductPage() {
               {product.category}
             </p>
             <h1 className="font-display text-4xl sm:text-5xl text-skull-text leading-tight mb-4">
-              {product.name}
+              {products.name}
             </h1>
 
             {/* Rating */}
@@ -116,7 +116,7 @@ export default function ProductPage() {
             {/* Price */}
             <div className="flex items-baseline gap-3 mb-2">
               <span className="font-mono-price text-skull-neon-pink text-4xl font-bold">
-                ${product.price}
+                ${products.price}
               </span>
             </div>
 
@@ -136,7 +136,7 @@ export default function ProductPage() {
                 Color
               </p>
               <div className="flex flex-wrap gap-2">
-                {product.colors.map((color) => (
+                {products.colors.map((color) => (
                   <button
                     key={color}
                     onClick={() => setSelectedColor(color)}
@@ -158,7 +158,7 @@ export default function ProductPage() {
                 Size
               </p>
               <div className="flex flex-wrap gap-2">
-                {product.sizes.map((size) => (
+                {products.sizes.map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
