@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Star, Minus, Plus, Package } from "lucide-react";
 import clsx from "clsx";
-import productsData from "../../../../data/products.json";
-import { Product } from "@/lib/types";
 import { useParams } from "next/navigation";
+import { products } from "../../../../data/products";
+import { log } from "console";
 // DUMMY DATA FOR UI SKELETON
 // const product = {
 //   id: "dummy",
@@ -26,19 +25,24 @@ import { useParams } from "next/navigation";
 //   sizes: ["S", "M", "L", "XL"],
 // };
 
-const products = productsData as Product[];
-
 export default function ProductPage() {
   // Logic removed for the user to implement themselves
   const params = useParams();
+  // console.log(params);
+  const id = params.id;
 
-  const [selectedColor, setSelectedColor] = useState(products.colors[0]);
-  const [selectedSize, setSelectedSize] = useState(products.sizes[0]);
+  const product = products.find((el) => el.id === id);
+
+  const [selectedColor, setSelectedColor] = useState(product?.colors[0]);
+  const [selectedSize, setSelectedSize] = useState(product?.sizes[0]);
   const [quantity, setQuantity] = useState(1);
-
-  const discount = Math.round(
-    ((products.originalPrice - products.price) / products.originalPrice) * 100,
-  );
+  if (!product) {
+    return (
+      <div className="text-white pt-40 text-center text-2xl font-bold">
+        Product not found
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-4">
@@ -59,7 +63,7 @@ export default function ProductPage() {
             Shop
           </Link>
           <span>/</span>
-          <span className="text-skull-text">{products.name}</span>
+          <span className="text-skull-text">{product.name}</span>
         </nav>
 
         {/* Main product grid */}
@@ -70,9 +74,9 @@ export default function ProductPage() {
               {/* Use the Image component once you have a real source */}
               <span className="text-xl">PRODUCT IMAGE SKELETON</span>
             </div>
-            {products.tag && (
+            {product.tag && (
               <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold tracking-widest bg-skull-neon-pink text-white z-10">
-                {products.tag}
+                {product.tag}
               </span>
             )}
           </div>
@@ -80,10 +84,10 @@ export default function ProductPage() {
           {/* RIGHT — Details */}
           <div className="flex flex-col">
             <p className="text-skull-muted text-xs uppercase tracking-widest mb-2">
-              {products.category}
+              {product.category}
             </p>
             <h1 className="font-display text-4xl sm:text-5xl text-skull-text leading-tight mb-4">
-              {products.name}
+              {product.name}
             </h1>
 
             {/* Rating */}
@@ -102,23 +106,17 @@ export default function ProductPage() {
                 ))}
               </div>
               <span className="text-skull-text text-sm font-semibold">
-                {products.rating}
+                {product.rating}
               </span>
               <span className="text-skull-muted text-sm">
-                ({products.reviews} reviews)
+                ({product.reviews} reviews)
               </span>
             </div>
 
             {/* Price */}
             <div className="flex items-baseline gap-3 mb-2">
               <span className="font-mono-price text-skull-neon-pink text-4xl font-bold">
-                ${products.price}
-              </span>
-              <span className="font-mono-price text-skull-muted text-xl line-through">
-                ${products.originalPrice}
-              </span>
-              <span className="text-skull-neon-pink text-sm font-bold bg-skull-neon-pink/10 px-2 py-0.5 rounded">
-                -{discount}%
+                ${product.price}
               </span>
             </div>
 
@@ -138,7 +136,7 @@ export default function ProductPage() {
                 Color
               </p>
               <div className="flex flex-wrap gap-2">
-                {products.colors.map((color) => (
+                {product.colors.map((color) => (
                   <button
                     key={color}
                     onClick={() => setSelectedColor(color)}
@@ -160,7 +158,7 @@ export default function ProductPage() {
                 Size
               </p>
               <div className="flex flex-wrap gap-2">
-                {products.sizes.map((size) => (
+                {product.sizes.map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
@@ -207,7 +205,7 @@ export default function ProductPage() {
                 About this drop
               </p>
               <p className="text-skull-text text-sm leading-relaxed">
-                {products.description}
+                {product.description}
               </p>
             </div>
           </div>

@@ -33,7 +33,9 @@ I am currently in the **"Logic implementation"** phase.
 > type.js created for global product types.
 > global data is json file, later need to connect with (mySql) database.
 > product card opening product page according to product id from json.
-> product.js craeted for product data (not connected yet)
+> product.js created for product data (not connected yet)
+> product page error handling added
+> product.js added to product page
 
 ---
 
