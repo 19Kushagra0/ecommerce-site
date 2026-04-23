@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💀 SKULLDROP
 
-## Getting Started
+**Cyberpunk × Candy Skull Gaming E-Commerce Store**
 
-First, run the development server:
+This is a high-performance gaming store built with a dark cyberpunk aesthetic, featuring neon glows and "Candy Skull" culture.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework:** Next.js 16 (App Router)
+- **Styling:** Tailwind CSS v4 (Pure CSS Theme) (convert to module CSS in future)
+- **Language:** TypeScript (Strict Type Safety)
+- **Icons:** Lucide React (check it later)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Current Project Status
 
-To learn more about Next.js, take a look at the following resources:
+I am currently in the **"Logic implementation"** phase.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **UI Design:** Home page and Product details UI are base design created.
+- **Data:** currently using local JSON and TypeScript interfaces .
+- **Dynamic Logic:** The logic is yet to be connected to the UI completely.
+- **Cart:** Context need to be created yet, and add the product to cart functionality.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🚩 Where I Left Off (FOR FUTURE ME)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> **Last Update:**
+> basic ui created for home, shop, about contact and product detail page but data is not connected yet.
+> type.js created for global product types.
+> global data is json file, later need to connect with (mySql) database.
+> product card opening product page according to product id from json.
+> product.js craeted for product data (not connected yet)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## For future me context for current errors
+
+## 🗺️ Roadmap (Future Planning)
+
+- Convert Tailwind styles to **CSS Modules** for better organization.
+- Add **Framer Motion** for smoother cyberpunk animations.
+- Implement **Stripe** for a real checkout experience.
+
+## 🏃 How to Run
+
+1. `npm install` (to get dependencies)
+2. `npm run dev` (to start the engine)

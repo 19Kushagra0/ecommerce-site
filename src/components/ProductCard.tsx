@@ -21,7 +21,8 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div
+    <Link
+      href={`/product/${product.id}`}
       className="group block cursor-default"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -115,6 +116,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         </div>
       </article>
-    </div>
+    </Link>
   );
 }
