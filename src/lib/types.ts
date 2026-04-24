@@ -12,6 +12,7 @@ export interface Product {
   colors: string[];
   sizes: string[];
   description: string;
+  slug: string;
 }
 
 export interface Category {

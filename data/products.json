@@ -12,7 +12,8 @@
     "stock": 12,
     "colors": ["#ff2d78", "#b026ff", "#050008"],
     "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
-    "description": "The Neon Reaper Hoodie is the ultimate statement piece for every gamer. Crafted from heavyweight 380gsm fleece with a candy skull embroidered chest logo, neon pink trim detailing, and a kangaroo pocket big enough for your soul. Machine wash. Preshrunk. Haunt the lobby in style."
+    "description": "The Neon Reaper Hoodie is the ultimate statement piece for every gamer. Crafted from heavyweight 380gsm fleece with a candy skull embroidered chest logo, neon pink trim detailing, and a kangaroo pocket big enough for your soul. Machine wash. Preshrunk. Haunt the lobby in style.",
+    "slug": "neon-reaper-hoodie"
   },
   {
     "id": "2",
@@ -27,7 +28,8 @@
     "stock": 45,
     "colors": ["#050008", "#0d0016"],
     "sizes": ["900x400mm", "1200x600mm"],
-    "description": "Extended XL gaming mousepad with a full-color Dia de los Muertos artwork print covering every millimeter. Micro-woven surface for precision tracking across all DPI settings. Anti-slip rubber base. Stitched neon pink edges. Goes great with the Calavera Keycap Set."
+    "description": "Extended XL gaming mousepad with a full-color Dia de los Muertos artwork print covering every millimeter. Micro-woven surface for precision tracking across all DPI settings. Anti-slip rubber base. Stitched neon pink edges. Goes great with the Calavera Keycap Set.",
+    "slug": "skull-drops-mousepad-xl"
   },
   {
     "id": "3",
@@ -42,7 +44,8 @@
     "stock": 8,
     "colors": ["#ff2d78", "#b026ff", "#00d4ff", "#ffd700"],
     "sizes": ["Full Kit", "TKL Kit"],
-    "description": "Double-shot PBT keycaps with individual hand-painted candy skull legends. Cherry MX compatible. 137-key full kit includes ISO and ANSI variants. The legends won't fade — unlike your enemies. Works with every 60%, 65%, TKL, and full-size board."
+    "description": "Double-shot PBT keycaps with individual hand-painted candy skull legends. Cherry MX compatible. 137-key full kit includes ISO and ANSI variants. The legends won't fade — unlike your enemies. Works with every 60%, 65%, TKL, and full-size board.",
+    "slug": "calavera-keycap-set"
   },
   {
     "id": "4",
@@ -57,7 +60,8 @@
     "stock": 20,
     "colors": ["#050008", "#130020"],
     "sizes": ["Standard (800x300mm)", "XL (1200x400mm)"],
-    "description": "Transform your entire workspace with the Day of the Dead Desk Mat. Vibrant marigold-and-skull artwork printed on premium microfiber. Dual-sided surface — smooth for mouse, textured for wrist comfort. Rolled shipping, no creases. Your ancestors would want this for you."
+    "description": "Transform your entire workspace with the Day of the Dead Desk Mat. Vibrant marigold-and-skull artwork printed on premium microfiber. Dual-sided surface — smooth for mouse, textured for wrist comfort. Rolled shipping, no creases. Your ancestors would want this for you.",
+    "slug": "day-of-the-dead-desk-mat"
   },
   {
     "id": "5",
@@ -72,7 +76,8 @@
     "stock": 30,
     "colors": ["#050008", "#ffffff", "#ff2d78"],
     "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
-    "description": "100% ring-spun cotton tee with a faded, screen-printed Ghost Rider candy skull graphic. Vintage wash finish gives it that perfectly broken-in look. Unisex cut runs relaxed. Wear it to the tournament or to haunt your local coffee shop."
+    "description": "100% ring-spun cotton tee with a faded, screen-printed Ghost Rider candy skull graphic. Vintage wash finish gives it that perfectly broken-in look. Unisex cut runs relaxed. Wear it to the tournament or to haunt your local coffee shop.",
+    "slug": "ghost-rider-tee"
   },
   {
     "id": "6",
@@ -87,7 +92,8 @@
     "stock": 5,
     "colors": ["#050008", "#b026ff"],
     "sizes": ["Small/Medium", "Large/XL"],
-    "description": "Universal gaming chair cover with candy skull all-over print. Stretchy spandex-blend fits most racing-style chairs. Machine washable. Neon purple accent piping. You've invested in your chair — now make it look as deadly as your K/D ratio."
+    "description": "Universal gaming chair cover with candy skull all-over print. Stretchy spandex-blend fits most racing-style chairs. Machine washable. Neon purple accent piping. You've invested in your chair — now make it look as deadly as your K/D ratio.",
+    "slug": "skull-lord-gaming-chair-cover"
   },
   {
     "id": "7",
@@ -102,7 +108,8 @@
     "stock": 60,
     "colors": ["#ff2d78", "#b026ff", "#00d4ff"],
     "sizes": ["A3 (Set of 3)", "A2 (Set of 3)"],
-    "description": "Set of three museum-quality neon skull art prints. Each 250gsm matte poster features a unique Dia de los Muertos design with cyberpunk neon color grading. Rolled in a protective tube. Frame not included. Your setup will never look the same again."
+    "description": "Set of three museum-quality neon skull art prints. Each 250gsm matte poster features a unique Dia de los Muertos design with cyberpunk neon color grading. Rolled in a protective tube. Frame not included. Your setup will never look the same again.",
+    "slug": "neon-skull-poster-set"
   },
   {
     "id": "8",
@@ -117,6 +124,7 @@
     "stock": 25,
     "colors": ["#050008", "#0d0016"],
     "sizes": ["Standard (45cm)", "XL (60cm)"],
-    "description": "Memory foam wrist rest with a slow-breathing RGB underglow and a debossed candy skull pattern on the leatherette surface. USB-powered, 16 static colors + 4 breathing modes. Anti-slip base. Ergonomic support that slaps as hard as your headshots."
+    "description": "Memory foam wrist rest with a slow-breathing RGB underglow and a debossed candy skull pattern on the leatherette surface. USB-powered, 16 static colors + 4 breathing modes. Anti-slip base. Ergonomic support that slaps as hard as your headshots.",
+    "slug": "rgb-skull-wrist-rest"
   }
 ]
