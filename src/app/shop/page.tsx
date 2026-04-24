@@ -1,16 +1,15 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { use } from 'react';
-import ProductCard from '@/components/ProductCard';
-import CategoryFilter from '@/components/CategoryFilter';
-import SearchBar from '@/components/SearchBar';
-import productsData from '../../../data/products.json';
-import categoriesData from '../../../data/categories.json';
-import type { Category } from '@/lib/types';
+import { useState } from "react";
+import { use } from "react";
+import ProductCard from "@/components/ProductCard";
+import CategoryFilter from "@/components/CategoryFilter";
+import SearchBar from "@/components/SearchBar";
+import { products } from "@/../data/products";
+import categoriesData from "../../../data/categories.json";
+import type { Category } from "@/lib/types";
 
 const categories = categoriesData as Category[];
-const allProducts = productsData as any[];
 
 interface ShopPageProps {
   searchParams: Promise<{ category?: string }>;
@@ -18,19 +17,29 @@ interface ShopPageProps {
 
 export default function ShopPage({ searchParams }: ShopPageProps) {
   const { category: initialCategory } = use(searchParams);
-  const [activeCategory, setActiveCategory] = useState(initialCategory ?? 'all');
-  const [search, setSearch] = useState('');
+  const [activeCategory, setActiveCategory] = useState(
+    initialCategory ?? "all",
+  );
+  const [search, setSearch] = useState("");
 
-  const productCounts = { all: allProducts.length, apparel: 2, peripherals: 3, accessories: 2, decor: 1 };
+  const productCounts = {
+    all: products.length,
+    apparel: 2,
+    peripherals: 3,
+    accessories: 2,
+    decor: 1,
+  };
 
-  const filtered = allProducts;
+  const filtered = products;
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="mb-10 text-center">
-          <p className="text-skull-neon-pink text-xs uppercase tracking-[0.35em] mb-2">All gear drops</p>
+          <p className="text-skull-neon-pink text-xs uppercase tracking-[0.35em] mb-2">
+            All gear drops
+          </p>
           <h1 className="font-display text-6xl gradient-skull">THE DROP</h1>
           <div className="flex items-center justify-center gap-3 mt-3">
             <div className="h-px w-16 bg-gradient-to-r from-transparent to-skull-neon-pink/50" />
@@ -56,10 +65,14 @@ export default function ShopPage({ searchParams }: ShopPageProps) {
 
         {/* Result count */}
         <p className="text-skull-muted text-sm mb-6">
-          Showing{' '}
-          <span className="text-skull-neon-pink font-semibold">{filtered.length}</span>{' '}
-          of{' '}
-          <span className="text-skull-text font-semibold">{allProducts.length}</span>{' '}
+          Showing{" "}
+          <span className="text-skull-neon-pink font-semibold">
+            {filtered.length}
+          </span>{" "}
+          of{" "}
+          <span className="text-skull-text font-semibold">
+            {products.length}
+          </span>{" "}
           products
         </p>
 
@@ -73,8 +86,12 @@ export default function ShopPage({ searchParams }: ShopPageProps) {
         ) : (
           <div className="text-center py-24">
             <p className="text-6xl mb-4">💀</p>
-            <h2 className="font-display text-3xl text-skull-muted mb-2">No drops found</h2>
-            <p className="text-skull-muted text-sm">Try a different search or category</p>
+            <h2 className="font-display text-3xl text-skull-muted mb-2">
+              No drops found
+            </h2>
+            <p className="text-skull-muted text-sm">
+              Try a different search or category
+            </p>
           </div>
         )}
       </div>

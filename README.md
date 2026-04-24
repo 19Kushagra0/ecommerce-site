@@ -36,6 +36,7 @@ I am currently in the **"Logic implementation"** phase.
 > product.js created for product data (not connected yet)
 > product page error handling added
 > product.js added to product page
+> changed product page routing from id to slug for better SEO and user experience.
 
 ---
 
