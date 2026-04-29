@@ -7,29 +7,17 @@ import clsx from "clsx";
 import { useParams } from "next/navigation";
 import { products } from "../../../../data/products";
 
-// DUMMY DATA FOR UI SKELETON
-// const product = {
-//   id: "dummy",
-//   name: "SKULL DROP ITEM",
-//   price: 99.99,
-//   originalPrice: 129.99,
-//   rating: 4.5,
-//   reviews: 12,
-//   description:
-//     "This is a placeholder description. Connect your database logic here to show real product details.",
-//   image: "/placeholder-product.jpg", // You should replace this with a real image path or use your own logic
-//   category: "EQUIPMENT",
-//   tag: "NEW",
-//   stock: 5,
-//   colors: ["#000000", "#FF007A", "#BC13FE"],
-//   sizes: ["S", "M", "L", "XL"],
-// };
-
 export default function ProductPage() {
   // Logic removed for the user to implement themselves
-  const params = useParams();
+  // const params = useParams();
   // console.log(params);
-  const slug = params.slug;
+  // const slug = params.slug;
+
+  // disructure slug from params
+  // const { slug: slug } = useParams();
+
+  //fancy distructuring
+  const { slug } = useParams();
 
   const product = products.find((el) => el.slug === slug);
 
