@@ -37,6 +37,8 @@ I am currently in the **"Logic implementation"** phase.
 > product page error handling added
 > product.js added to product page
 > changed product page routing from id to slug for better SEO and user experience.
+> changed categories.json to categories.ts
+> sorting work now in shop
 
 ---
 

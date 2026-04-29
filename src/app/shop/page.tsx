@@ -6,10 +6,8 @@ import ProductCard from "@/components/ProductCard";
 import CategoryFilter from "@/components/CategoryFilter";
 import SearchBar from "@/components/SearchBar";
 import { products } from "@/../data/products";
-import categoriesData from "../../../data/categories.json";
-import type { Category } from "@/lib/types";
-
-const categories = categoriesData as Category[];
+import { categories } from "@/../data/categories";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 interface ShopPageProps {
   searchParams: Promise<{ category?: string }>;
@@ -17,20 +15,29 @@ interface ShopPageProps {
 
 export default function ShopPage({ searchParams }: ShopPageProps) {
   const { category: initialCategory } = use(searchParams);
+  const router = useRouter();
+  const pathname = usePathname();
+  const currentSearchParams = useSearchParams();
+
+  // easy way to get search params
+  // const params = use(searchParams);
+  // const initialCategory = params.category;
+
   const [activeCategory, setActiveCategory] = useState(
     initialCategory ?? "all",
   );
+
+  console.log(activeCategory);
+
   const [search, setSearch] = useState("");
 
-  const productCounts = {
-    all: products.length,
-    apparel: 2,
-    peripherals: 3,
-    accessories: 2,
-    decor: 1,
-  };
-
-  const filtered = products;
+  const filtered = products.filter((el) => {
+    if (activeCategory === "all") {
+      return true;
+    } else {
+      return el.category === activeCategory;
+    }
+  });
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-4">
@@ -59,22 +66,10 @@ export default function ShopPage({ searchParams }: ShopPageProps) {
             categories={categories}
             activeCategory={activeCategory}
             onSelect={setActiveCategory}
-            productCounts={productCounts}
           />
         </div>
 
         {/* Result count */}
-        <p className="text-skull-muted text-sm mb-6">
-          Showing{" "}
-          <span className="text-skull-neon-pink font-semibold">
-            {filtered.length}
-          </span>{" "}
-          of{" "}
-          <span className="text-skull-text font-semibold">
-            {products.length}
-          </span>{" "}
-          products
-        </p>
 
         {/* Grid */}
         {filtered.length > 0 ? (
