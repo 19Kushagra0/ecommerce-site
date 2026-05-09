@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CartModal from "@/components/CartModal";
+
+import { CartProvider } from "@/context/CartContext";
 
 export const metadata: Metadata = {
   title: "SkullDrop — Born to Play. Built to Die.",
@@ -15,9 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className="min-h-full flex flex-col bg-skull-black text-skull-text antialiased">
-        <Navbar />
-        <main className="flex-1 animate-fade-in">{children}</main>
-        <Footer />
+        <CartProvider>
+          <Navbar />
+          <CartModal />
+          <main className="flex-1 animate-fade-in">{children}</main>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

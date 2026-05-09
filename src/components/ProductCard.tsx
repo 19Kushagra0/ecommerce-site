@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Star } from "lucide-react";
+import { Star, ShoppingCart } from "lucide-react";
 import { Icon } from "@/components/ui/Icon";
 import { Skull } from "@/lib/icons";
 import type { Product } from "@/lib/types";
 import clsx from "clsx";
 import { useState } from "react";
+import { useCart } from "@/context/CartContext";
 
 interface ProductCardProps {
   product: Product;
@@ -21,6 +22,8 @@ const TAG_STYLES: Record<string, string> = {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const [hovered, setHovered] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
+  const { addToCart } = useCart();
 
   return (
     <Link
@@ -59,17 +62,6 @@ export default function ProductCard({ product }: ProductCardProps) {
             </span>
           )}
 
-          {/* Quick View overlay */}
-          <div
-            className={clsx(
-              "absolute inset-0 flex items-center justify-center bg-skull-black/50 backdrop-blur-sm transition-opacity duration-200",
-              hovered ? "opacity-100" : "opacity-0",
-            )}
-          >
-            <span className="flex items-center gap-2 text-skull-text text-sm font-medium bg-skull-card/80 border border-skull-neon-purple/50 px-4 py-2 rounded-full">
-              View Product
-            </span>
-          </div>
         </div>
 
         {/* Body */}
@@ -105,16 +97,36 @@ export default function ProductCard({ product }: ProductCardProps) {
               New Drop <Icon icon={Skull} size={12} className="ml-1" aria-hidden="true" />
             </span>
           )}
-          {/* Price */}
-          <div className="flex items-baseline gap-2">
-            <span className="font-mono-price text-skull-neon-pink font-bold text-base">
-              ${product.price}
-            </span>
-            {product.originalPrice && (
-              <span className="font-mono-price text-skull-muted text-xs line-through">
-                ${product.originalPrice}
+          {/* Price and Cart */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-baseline gap-2">
+              <span className="font-mono-price text-skull-neon-pink font-bold text-base">
+                ${product.price}
               </span>
-            )}
+              {product.originalPrice && (
+                <span className="font-mono-price text-skull-muted text-xs line-through">
+                  ${product.originalPrice}
+                </span>
+              )}
+            </div>
+            
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                addToCart(product);
+                setIsAdded(true);
+                setTimeout(() => setIsAdded(false), 500);
+              }}
+              className={clsx(
+                "p-2 rounded-lg transition-all duration-300 group/cart shadow-lg",
+                isAdded 
+                  ? "bg-skull-neon-blue text-skull-black border-skull-neon-blue shadow-skull-neon-blue/40 scale-110" 
+                  : "bg-skull-neon-pink/10 border border-skull-neon-pink/20 text-skull-neon-pink hover:bg-skull-neon-pink hover:text-white shadow-skull-neon-pink/5"
+              )}
+              aria-label="Add to cart"
+            >
+              <ShoppingCart size={16} className={clsx("transition-transform duration-300", !isAdded && "group-hover/cart:scale-110")} />
+            </button>
           </div>
         </div>
       </article>

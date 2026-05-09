@@ -35,11 +35,12 @@ export default function ShopPage({ searchParams }: ShopPageProps) {
   const [search, setSearch] = useState("");
 
   const filtered = products.filter((el) => {
-    if (activeCategory === "all") {
-      return true;
-    } else {
-      return el.category === activeCategory;
-    }
+    const matchesCategory =
+      activeCategory === "all" || el.category === activeCategory;
+    const matchesSearch =
+      el.name.toLowerCase().includes(search.toLowerCase()) ||
+      el.description?.toLowerCase().includes(search.toLowerCase());
+    return matchesCategory && matchesSearch;
   });
 
   function handleCategorySelect(categoryId: string) {
@@ -67,18 +68,16 @@ export default function ShopPage({ searchParams }: ShopPageProps) {
           <h1 className="font-display text-6xl gradient-skull">THE DROP</h1>
           <div className="flex items-center justify-center gap-3 mt-3">
             <div className="h-px w-16 bg-gradient-to-r from-transparent to-skull-neon-pink/50" />
-            <span className="text-skull-neon-pink"><Icon icon={Skull} size={20} aria-hidden="true" /></span>
+            <span className="text-skull-neon-pink">
+              <Icon icon={Skull} size={20} aria-hidden="true" />
+            </span>
             <div className="h-px w-16 bg-gradient-to-l from-transparent to-skull-neon-pink/50" />
           </div>
         </div>
 
         {/* Controls */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-6">
+        <div className="flex flex-col sm:flex-row gap-4 mb-10">
           <SearchBar value={search} onChange={setSearch} />
-        </div>
-
-        {/* Category Filter */}
-        <div className="mb-8">
           <CategoryFilter
             categories={categories}
             activeCategory={activeCategory}
@@ -97,7 +96,9 @@ export default function ShopPage({ searchParams }: ShopPageProps) {
           </div>
         ) : (
           <div className="text-center py-24 flex flex-col items-center">
-            <div className="mb-4 text-skull-muted"><Icon icon={Skull} size={60} aria-hidden="true" /></div>
+            <div className="mb-4 text-skull-muted">
+              <Icon icon={Skull} size={60} aria-hidden="true" />
+            </div>
             <h2 className="font-display text-3xl text-skull-muted mb-2">
               No drops found
             </h2>

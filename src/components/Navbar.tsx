@@ -3,17 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Skull } from "lucide-react";
+import { Menu, X, Skull, Search, ShoppingCart, User } from "lucide-react";
 import clsx from "clsx";
 
-const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/shop", label: "Shop" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
+import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
+  const { itemCount, setIsCartOpen } = useCart();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -28,48 +24,92 @@ export default function Navbar() {
     <>
       <nav
         className={clsx(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
-          scrolled
-            ? "backdrop-blur-md bg-skull-black/90 border-skull-border shadow-lg shadow-skull-neon-purple/5"
-            : "bg-skull-black/60 border-transparent backdrop-blur-sm",
+          "fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)]",
+          scrolled ? "bg-[#0a0a0a]/90 backdrop-blur-xl" : "bg-transparent backdrop-blur-md"
         )}
       >
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 shrink-0 group">
-            <Skull className="w-7 h-7 text-skull-neon-pink group-hover:text-skull-neon-purple transition-colors duration-300" />
-            <span className="font-display text-2xl tracking-wider gradient-skull">
+        <div className="flex justify-between items-center px-4 md:px-16 py-4 w-full max-w-[1920px] mx-auto">
+          {/* Brand */}
+          <Link href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
+            <Skull className="text-[#c026d3] w-8 h-8" />
+            <span
+              className="text-[28px] font-bold tracking-tighter bg-gradient-to-r from-[#c026d3] to-[#06b6d4] bg-clip-text text-transparent"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
               SKULLDROP
             </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <ul className="hidden lg:flex items-center gap-8">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={clsx(
-                    "text-sm font-medium tracking-wide transition-colors duration-200 relative pb-0.5",
-                    pathname === link.href
-                      ? "text-skull-neon-pink after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-skull-neon-pink"
-                      : "text-skull-muted hover:text-skull-text",
-                  )}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {/* Desktop Navigation Links */}
+          <div className="hidden md:flex items-center gap-8">
+            <Link
+              href="/"
+              className={clsx(
+                "text-[12px] font-bold transition-all duration-300 uppercase tracking-widest",
+                pathname === "/" ? "text-[#c026d3] drop-shadow-[0_0_8px_rgba(192,38,211,0.8)]" : "text-[#e6e0e9]/70 hover:text-[#c026d3]"
+              )}
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              DROPS
+            </Link>
+            <Link
+              href="/collection"
+              className={clsx(
+                "text-[12px] font-bold transition-all duration-300 uppercase tracking-widest",
+                pathname === "/collection" ? "text-[#c026d3] drop-shadow-[0_0_8px_rgba(192,38,211,0.8)]" : "text-[#e6e0e9]/70 hover:text-[#c026d3]"
+              )}
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              COLLECTION
+            </Link>
+            <Link
+              href="/vault"
+              className={clsx(
+                "text-[12px] font-bold transition-all duration-300 uppercase tracking-widest",
+                pathname === "/vault" ? "text-[#c026d3] drop-shadow-[0_0_8px_rgba(192,38,211,0.8)]" : "text-[#e6e0e9]/70 hover:text-[#c026d3]"
+              )}
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              VAULT
+            </Link>
+            <Link
+              href="/about"
+              className={clsx(
+                "text-[12px] font-bold transition-all duration-300 uppercase tracking-widest",
+                pathname === "/about" ? "text-[#c026d3] drop-shadow-[0_0_8px_rgba(192,38,211,0.8)]" : "text-[#e6e0e9]/70 hover:text-[#c026d3]"
+              )}
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              THE CULT
+            </Link>
+          </div>
 
-          {/* Hamburger */}
-          <button
-            className="lg:hidden p-2 text-skull-muted hover:text-skull-text transition-colors"
-            onClick={() => setDrawerOpen(true)}
-            aria-label="Open menu"
-          >
-            <Menu className="w-5 h-5" />
-          </button>
+          {/* Trailing Icons */}
+          <div className="flex items-center gap-4 text-[#c026d3]">
+            <button className="hover:text-[#ff2d78] transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(255,45,120,0.8)] scale-95 ease-in-out hidden sm:block">
+              <Search className="w-6 h-6" />
+            </button>
+            <button 
+              onClick={() => setIsCartOpen(true)}
+              className="relative hover:text-[#ff2d78] transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(255,45,120,0.8)] scale-95 ease-in-out"
+            >
+              <ShoppingCart className="w-6 h-6" />
+              {itemCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-[#ff2d78] text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center shadow-[0_0_8px_rgba(255,45,120,0.6)]">
+                  {itemCount}
+                </span>
+              )}
+            </button>
+            <Link href="/profile" className="hover:text-[#ff2d78] transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(255,45,120,0.8)] scale-95 ease-in-out hidden md:block">
+              <User className="w-6 h-6" />
+            </Link>
+            <button
+              className="md:hidden text-[#c026d3] hover:text-[#ff2d78]"
+              onClick={() => setDrawerOpen(true)}
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -80,61 +120,88 @@ export default function Navbar() {
           drawerOpen ? "pointer-events-auto" : "pointer-events-none",
         )}
       >
-        {/* Backdrop */}
         <div
           className={clsx(
-            "absolute inset-0 bg-skull-black/80 backdrop-blur-sm transition-opacity duration-300",
+            "absolute inset-0 bg-[#0a0a0a]/80 backdrop-blur-sm transition-opacity duration-300",
             drawerOpen ? "opacity-100" : "opacity-0",
           )}
           onClick={() => setDrawerOpen(false)}
         />
-        {/* Panel */}
         <div
           className={clsx(
-            "absolute right-0 top-0 bottom-0 w-72 bg-skull-dark border-l border-skull-border flex flex-col p-8 transition-transform duration-300",
+            "absolute right-0 top-0 bottom-0 w-72 bg-[#0a0a0a] border-l border-[#c026d3]/30 flex flex-col p-8 transition-transform duration-300 shadow-[-10px_0_30px_rgba(192,38,211,0.1)]",
             drawerOpen ? "translate-x-0" : "translate-x-full",
           )}
         >
           <button
-            className="absolute top-4 right-4 text-skull-muted hover:text-skull-neon-pink transition-colors"
+            className="absolute top-4 right-4 text-[#e6e0e9]/70 hover:text-[#c026d3] transition-colors"
             onClick={() => setDrawerOpen(false)}
-            aria-label="Close menu"
           >
             <X className="w-6 h-6" />
           </button>
-
-          <div className="flex items-center gap-2 mb-10">
-            <Skull className="w-6 h-6 text-skull-neon-pink" />
-            <span className="font-display text-xl gradient-skull">
+          <div className="flex items-center gap-2 mb-10 mt-4">
+            <Skull className="w-6 h-6 text-[#c026d3]" />
+            <span
+              className="text-xl font-bold bg-gradient-to-r from-[#c026d3] to-[#06b6d4] bg-clip-text text-transparent"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
               SKULLDROP
             </span>
           </div>
-
           <ul className="flex flex-col gap-6">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setDrawerOpen(false)}
-                  className={clsx(
-                    "font-display text-3xl tracking-wider transition-colors duration-200",
-                    pathname === link.href
-                      ? "text-skull-neon-pink"
-                      : "text-skull-text hover:text-skull-neon-purple",
-                  )}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            <li>
+              <Link 
+                href="/" 
+                onClick={() => setDrawerOpen(false)} 
+                className={clsx(
+                  "text-xl font-bold tracking-widest uppercase",
+                  pathname === "/" ? "text-[#c026d3] drop-shadow-[0_0_8px_rgba(192,38,211,0.8)]" : "text-[#e6e0e9]"
+                )}
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                DROPS
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/collection" 
+                onClick={() => setDrawerOpen(false)} 
+                className={clsx(
+                  "text-xl font-bold tracking-widest uppercase",
+                  pathname === "/collection" ? "text-[#c026d3] drop-shadow-[0_0_8px_rgba(192,38,211,0.8)]" : "text-[#e6e0e9]"
+                )}
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                COLLECTION
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/vault" 
+                onClick={() => setDrawerOpen(false)} 
+                className={clsx(
+                  "text-xl font-bold tracking-widest uppercase",
+                  pathname === "/vault" ? "text-[#c026d3] drop-shadow-[0_0_8px_rgba(192,38,211,0.8)]" : "text-[#e6e0e9]"
+                )}
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                VAULT
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/about" 
+                onClick={() => setDrawerOpen(false)} 
+                className={clsx(
+                  "text-xl font-bold tracking-widest uppercase",
+                  pathname === "/about" ? "text-[#c026d3] drop-shadow-[0_0_8px_rgba(192,38,211,0.8)]" : "text-[#e6e0e9]"
+                )}
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                THE CULT
+              </Link>
+            </li>
           </ul>
-
-          <div className="mt-auto pt-8 border-t border-skull-border">
-            <p className="text-skull-muted text-xs">© 2025 SkullDrop</p>
-            <p className="text-skull-muted text-xs mt-1">
-              Born to Play. Built to Die.
-            </p>
-          </div>
         </div>
       </div>
     </>

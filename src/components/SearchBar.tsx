@@ -24,7 +24,7 @@ export default function SearchBar({
         placeholder={placeholder}
         className={clsx(
           "w-full bg-skull-dark border border-skull-border rounded-xl",
-          "pl-9 pr-9 py-2.5 text-sm text-skull-text placeholder:text-skull-muted",
+          "pl-9 pr-9 py-1.5 text-sm text-skull-text placeholder:text-skull-muted",
           "outline-none transition-all duration-200",
           "focus:border-skull-neon-purple focus:ring-2 focus:ring-skull-neon-purple/20",
         )}
