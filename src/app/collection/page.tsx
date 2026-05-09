@@ -11,16 +11,12 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Icon } from "@/components/ui/Icon";
 import { Skull } from "@/lib/icons";
 
-interface ShopPageProps {
+interface CollectionPageProps {
   searchParams: Promise<{ category?: string }>;
 }
 
-export default function ShopPage({ searchParams }: ShopPageProps) {
+export default function CollectionPage({ searchParams }: CollectionPageProps) {
   const { category: initialCategory } = use(searchParams);
-
-  // easy way to get search params
-  // const params = use(searchParams);
-  // const initialCategory = params.category;
 
   const router = useRouter();
   const pathname = usePathname();
@@ -29,8 +25,6 @@ export default function ShopPage({ searchParams }: ShopPageProps) {
   const [activeCategory, setActiveCategory] = useState(
     initialCategory ?? "all",
   );
-
-  console.log(activeCategory);
 
   const [search, setSearch] = useState("");
 
@@ -84,8 +78,6 @@ export default function ShopPage({ searchParams }: ShopPageProps) {
             onSelect={handleCategorySelect}
           />
         </div>
-
-        {/* Result count */}
 
         {/* Grid */}
         {filtered.length > 0 ? (

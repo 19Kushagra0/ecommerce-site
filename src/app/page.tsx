@@ -6,7 +6,6 @@ import Image from "next/image";
 import { products } from "../../data/products";
 import ProductCard from "@/components/ProductCard";
 import {
-  Star,
   Shirt,
   Mouse,
   Watch,
@@ -208,11 +207,13 @@ function CategoryCard({ cat }: Readonly<{ cat: CategoryConfig }>) {
             {cat.count} ITEMS
           </span>
         </div>
+        <div className={clsx("w-10 h-10 rounded-full flex items-center justify-center border border-white/10 group-hover:bg-white group-hover:text-black transition-all duration-300", cat.arrowClass)}>
+          <ArrowRight size={18} />
+        </div>
       </div>
     </Link>
   );
 }
-
 
 function CategorySection({ category }: { category: CategoryConfig }) {
   const categoryProducts = products.filter(p => p.category === category.id).slice(0, 8);
@@ -267,14 +268,11 @@ function CategorySection({ category }: { category: CategoryConfig }) {
 
 // ── Page ───────────────────────────────────────────────────────
 export default function HomePage() {
-  const featuredProducts = products.slice(0, 4);
-
   return (
     <>
-      {/* ── Hero (untouched) ────────────────────────────────── */}
       <HeroSection />
 
-      {/* ── Marquee Banner ─────────────────────────────────── */}
+      {/* Marquee Banner */}
       <div className="bg-[#ff2d78] py-3 overflow-hidden border-y border-[#ff2d78] shadow-[0_0_20px_rgba(255,45,120,0.4)] relative z-20">
         <div className="flex whitespace-nowrap animate-marquee">
           {MARQUEE_ITEMS.map((item, i) => (
@@ -288,10 +286,9 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* ── Categories ─────────────────────────────────────── */}
+      {/* Categories Grid */}
       <section className="bg-section-dark px-4 md:px-16 py-24">
         <div className="max-w-7xl mx-auto space-y-10">
-          {/* Header row */}
           <div className="flex justify-between items-center border-b border-[#c026d3]/20 pb-6">
             <h2
               className="text-3xl md:text-4xl font-bold tracking-tight"
@@ -317,7 +314,6 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* 4 rows, 2 columns */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {CATEGORIES.map((cat) => (
               <CategoryCard key={cat.id} cat={cat} />
@@ -326,28 +322,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Category Collections ────────────────────────────── */}
+      {/* Category Collections Sections */}
       {CATEGORIES.map((cat) => (
         <CategorySection key={cat.id} category={cat} />
       ))}
 
-      {/* ── Join the Cult ──────────────────────────────────── */}
+      {/* Join the Cult / Newsletter Section */}
       <section className="bg-[#0a0a0a] px-4 md:px-16 py-16">
         <div className="max-w-4xl mx-auto cult-section-bg rounded-xl p-12 text-center relative overflow-hidden">
-          {/* Subtle skull watermark */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04] z-0">
             <Skull size={380} aria-hidden="true" />
           </div>
 
           <div className="relative z-10 flex flex-col items-center gap-6">
-            {/* Glowing skull icon */}
             <Skull
               size={64}
               className="cult-skull-glow text-white"
               aria-hidden="true"
             />
 
-            {/* Heading */}
             <h2
               className="text-5xl md:text-6xl font-bold tracking-tight"
               style={{
@@ -361,13 +354,11 @@ export default function HomePage() {
               JOIN THE CULT
             </h2>
 
-            {/* Subtext */}
             <p className="text-[#e2e8f0] text-base max-w-md leading-relaxed">
               Subscribe for exclusive early access to limited drops, underground
               events, and member-only gear.
             </p>
 
-            {/* Email form */}
             <form
               onSubmit={(e) => e.preventDefault()}
               className="w-full max-w-md flex flex-col sm:flex-row gap-4"
