@@ -8,6 +8,8 @@ import SearchBar from "@/components/SearchBar";
 import { products } from "@/../data/products";
 import { categories } from "@/../data/categories";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { Icon } from "@/components/ui/Icon";
+import { Skull } from "@/lib/icons";
 
 interface ShopPageProps {
   searchParams: Promise<{ category?: string }>;
@@ -65,7 +67,7 @@ export default function ShopPage({ searchParams }: ShopPageProps) {
           <h1 className="font-display text-6xl gradient-skull">THE DROP</h1>
           <div className="flex items-center justify-center gap-3 mt-3">
             <div className="h-px w-16 bg-gradient-to-r from-transparent to-skull-neon-pink/50" />
-            <span className="text-skull-neon-pink text-lg">💀</span>
+            <span className="text-skull-neon-pink"><Icon icon={Skull} size={20} aria-hidden="true" /></span>
             <div className="h-px w-16 bg-gradient-to-l from-transparent to-skull-neon-pink/50" />
           </div>
         </div>
@@ -94,8 +96,8 @@ export default function ShopPage({ searchParams }: ShopPageProps) {
             ))}
           </div>
         ) : (
-          <div className="text-center py-24">
-            <p className="text-6xl mb-4">💀</p>
+          <div className="text-center py-24 flex flex-col items-center">
+            <div className="mb-4 text-skull-muted"><Icon icon={Skull} size={60} aria-hidden="true" /></div>
             <h2 className="font-display text-3xl text-skull-muted mb-2">
               No drops found
             </h2>

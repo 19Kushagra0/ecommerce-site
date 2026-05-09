@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Star } from "lucide-react";
+import { Icon } from "@/components/ui/Icon";
+import { Skull } from "@/lib/icons";
 import type { Product } from "@/lib/types";
 import clsx from "clsx";
 import { useState } from "react";
@@ -99,8 +101,8 @@ export default function ProductCard({ product }: ProductCardProps) {
               </span>
             </div>
           ) : (
-            <span className="text-skull-neon-pink/70 text-[10px] uppercase tracking-widest font-bold">
-              New Drop 💀
+            <span className="text-skull-neon-pink/70 text-[10px] uppercase tracking-widest font-bold flex items-center">
+              New Drop <Icon icon={Skull} size={12} className="ml-1" aria-hidden="true" />
             </span>
           )}
           {/* Price */}
