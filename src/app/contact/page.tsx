@@ -9,6 +9,8 @@ import {
   MessageCircle,
   CheckCircle,
 } from "lucide-react";
+import { Icon } from "@/components/ui/Icon";
+import { Skull } from "@/lib/icons";
 
 const SUBJECTS = ["Order Issue", "Collaboration", "General"];
 
@@ -138,9 +140,9 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full py-4 bg-skull-neon-pink text-white font-bold rounded-xl hover:brightness-110 active:scale-[0.98] transition-all duration-150 shadow-lg shadow-skull-neon-pink/20"
+                  className="w-full py-4 flex items-center justify-center gap-2 bg-skull-neon-pink text-white font-bold rounded-xl hover:brightness-110 active:scale-[0.98] transition-all duration-150 shadow-lg shadow-skull-neon-pink/20"
                 >
-                  Send Message 💀
+                  Send Message <Icon icon={Skull} size={20} aria-hidden="true" />
                 </button>
               </form>
             )}

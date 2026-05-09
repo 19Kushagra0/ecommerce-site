@@ -4,6 +4,8 @@ import HeroSection from "@/components/HeroSection";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import { products } from "../../data/products";
+import { Icon } from "@/components/ui/Icon";
+import { Shirt, Mouse, Gamepad2, ImageIcon, Skull } from "@/lib/icons";
 
 const MARQUEE_TEXT =
   "FREE SHIPPING OVER $75 — LIMITED DROPS — NEW GEAR EVERY FRIDAY — CANDY SKULL CULTURE — ";
@@ -28,7 +30,7 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {/* Category: Apparel */}
             <div className="group relative flex flex-col items-center justify-center gap-3 p-6 bg-skull-card rounded-xl border border-skull-border hover:border-skull-neon-pink/60 hover:shadow-lg hover:shadow-skull-neon-pink/10 transition-all duration-200">
-              <span className="text-4xl">👕</span>
+              <Icon icon={Shirt} size={36} aria-hidden="true" />
               <span className="font-display text-lg tracking-wider text-skull-text group-hover:text-skull-neon-pink transition-colors">
                 Apparel
               </span>
@@ -41,7 +43,7 @@ export default function HomePage() {
 
             {/* Category: Peripherals */}
             <div className="group relative flex flex-col items-center justify-center gap-3 p-6 bg-skull-card rounded-xl border border-skull-border hover:border-skull-neon-pink/60 hover:shadow-lg hover:shadow-skull-neon-pink/10 transition-all duration-200">
-              <span className="text-4xl">🖱️</span>
+              <Icon icon={Mouse} size={36} aria-hidden="true" />
               <span className="font-display text-lg tracking-wider text-skull-text group-hover:text-skull-neon-pink transition-colors">
                 Peripherals
               </span>
@@ -54,7 +56,7 @@ export default function HomePage() {
 
             {/* Category: Accessories */}
             <div className="group relative flex flex-col items-center justify-center gap-3 p-6 bg-skull-card rounded-xl border border-skull-border hover:border-skull-neon-pink/60 hover:shadow-lg hover:shadow-skull-neon-pink/10 transition-all duration-200">
-              <span className="text-4xl">🎮</span>
+              <Icon icon={Gamepad2} size={36} aria-hidden="true" />
               <span className="font-display text-lg tracking-wider text-skull-text group-hover:text-skull-neon-pink transition-colors">
                 Accessories
               </span>
@@ -67,7 +69,7 @@ export default function HomePage() {
 
             {/* Category: Decor */}
             <div className="group relative flex flex-col items-center justify-center gap-3 p-6 bg-skull-card rounded-xl border border-skull-border hover:border-skull-neon-pink/60 hover:shadow-lg hover:shadow-skull-neon-pink/10 transition-all duration-200">
-              <span className="text-4xl">🖼️</span>
+              <Icon icon={ImageIcon} size={36} aria-hidden="true" />
               <span className="font-display text-lg tracking-wider text-skull-text group-hover:text-skull-neon-pink transition-colors">
                 Decor
               </span>
@@ -127,7 +129,7 @@ export default function HomePage() {
       {/* ── Newsletter ─────────────────────────────────────── */}
       <section className="py-20 px-4 bg-skull-dark border-t border-skull-border">
         <div className="max-w-xl mx-auto text-center">
-          <div className="text-4xl mb-4">💀</div>
+          <div className="flex justify-center mb-4"><Icon icon={Skull} size={36} aria-hidden="true" /></div>
           <h2 className="font-display text-4xl gradient-skull mb-3">
             JOIN THE CULT
           </h2>

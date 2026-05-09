@@ -1,19 +1,22 @@
+import { Icon } from "@/components/ui/Icon";
+import { Skull, Gem, Zap } from "@/lib/icons";
+
 export default function AboutPage() {
   const values = [
     {
-      icon: "💀",
+      icon: Skull,
       title: "Community First",
       description:
         "Built by gamers, for gamers. Every drop is shaped by the community that wears it, plays with it, and lives by it.",
     },
     {
-      icon: "💎",
+      icon: Gem,
       title: "Premium Always",
       description:
         "We refuse to compromise on quality. Every stitch, every pixel, every keystroke meets our obsessive standards.",
     },
     {
-      icon: "⚡",
+      icon: Zap,
       title: "Limited Always",
       description:
         "No reprints. No restocks. When it drops, it drops once. Own a piece of history or miss it forever.",
@@ -59,7 +62,7 @@ export default function AboutPage() {
                 key={val.title}
                 className="bg-skull-dark rounded-2xl border border-skull-border card-glow p-8 text-center hover:border-skull-neon-purple/50 transition-colors duration-200"
               >
-                <div className="text-5xl mb-4">{val.icon}</div>
+                <div className="mb-4 flex justify-center"><Icon icon={val.icon} size={48} aria-hidden="true" /></div>
                 <h3 className="font-display text-2xl text-skull-text mb-3">
                   {val.title}
                 </h3>
@@ -79,8 +82,8 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="flex flex-col items-center text-center md:items-start md:text-left">
               {/* Avatar placeholder */}
-              <div className="w-24 h-24 rounded-full bg-skull-card border-2 border-skull-neon-purple/40 flex items-center justify-center text-4xl mb-4">
-                💀
+              <div className="w-24 h-24 rounded-full bg-skull-card border-2 border-skull-neon-purple/40 flex items-center justify-center mb-4">
+                <Icon icon={Skull} size={40} aria-hidden="true" />
               </div>
               <p className="font-display text-xl text-skull-text">
                 The SkullDrop Crew
