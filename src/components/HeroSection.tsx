@@ -1,182 +1,95 @@
 "use client";
 
 import Link from "next/link";
+import { Star, Skull } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-skull-black">
-      {/* Animated skull SVG background */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-        <svg
-          viewBox="0 0 200 200"
-          className="w-[80vmin] h-[80vmin] animate-pulse-glow"
+    <header className="relative min-h-[850px] flex items-center justify-center pt-24 overflow-hidden bg-[#0a0a0a] border-b border-[#2a1040]">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-pixel-grid pointer-events-none z-0" />
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,rgba(207,188,255,0.15)_0%,transparent_70%)]" />
+
+      {/* Giant faded skull */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none z-0">
+        <Skull
+          size={800}
+          className="text-[#c026d3]"
+          strokeWidth={1}
           aria-hidden="true"
-        >
-          <defs>
-            <radialGradient id="skullGrad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#b026ff" stopOpacity="0.15" />
-              <stop offset="100%" stopColor="#050008" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-          {/* Skull outline */}
-          <circle
-            cx="100"
-            cy="85"
-            r="55"
-            fill="url(#skullGrad)"
-            stroke="#b026ff22"
-            strokeWidth="1"
-          />
-          <rect
-            x="65"
-            y="125"
-            width="70"
-            height="35"
-            rx="8"
-            fill="none"
-            stroke="#b026ff22"
-            strokeWidth="1"
-          />
-          {/* Eyes */}
-          <ellipse
-            cx="82"
-            cy="82"
-            rx="14"
-            ry="16"
-            fill="#b026ff18"
-            stroke="#ff2d7844"
-            strokeWidth="1"
-          />
-          <ellipse
-            cx="118"
-            cy="82"
-            rx="14"
-            ry="16"
-            fill="#b026ff18"
-            stroke="#ff2d7844"
-            strokeWidth="1"
-          />
-          {/* Nose */}
-          <path
-            d="M 96 100 L 100 108 L 104 100"
-            stroke="#b026ff33"
-            strokeWidth="1"
-            fill="none"
-            strokeLinecap="round"
-          />
-          {/* Teeth */}
-          {[75, 87, 99, 111, 123].map((x, i) => (
-            <rect
-              key={i}
-              x={x}
-              y="137"
-              width="10"
-              height="16"
-              rx="2"
-              fill="none"
-              stroke="#b026ff22"
-              strokeWidth="1"
-            />
-          ))}
-          {/* Marigold flowers */}
-          {[
-            { cx: 30, cy: 30 },
-            { cx: 170, cy: 30 },
-            { cx: 30, cy: 170 },
-            { cx: 170, cy: 170 },
-          ].map((pos, i) => (
-            <g key={i}>
-              {[0, 45, 90, 135].map((angle) => (
-                <ellipse
-                  key={angle}
-                  cx={pos.cx}
-                  cy={pos.cy}
-                  rx="8"
-                  ry="4"
-                  fill="#ffd70015"
-                  stroke="#ffd70022"
-                  strokeWidth="0.5"
-                  transform={`rotate(${angle} ${pos.cx} ${pos.cy})`}
-                />
-              ))}
-              <circle
-                cx={pos.cx}
-                cy={pos.cy}
-                r="4"
-                fill="#ffd70015"
-                stroke="#ffd70033"
-                strokeWidth="0.5"
-              />
-            </g>
-          ))}
-        </svg>
+        />
       </div>
 
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "linear-gradient(#b026ff 1px, transparent 1px), linear-gradient(90deg, #b026ff 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto p-[100px]">
-        <p className="text-skull-neon-pink text-xs uppercase tracking-[0.4em] mb-6 font-medium">
-          Limited Drops — New Gear Every Friday
-        </p>
-
-        <h1 className="font-display text-7xl sm:text-8xl md:text-9xl leading-none mb-4">
-          <span className="glow-pink text-skull-neon-pink">BORN TO</span>
-          <br />
-          <span className="gradient-skull">PLAY.</span>
-          <br />
-          <span className="glow-purple text-skull-neon-purple">BUILT TO</span>
-          <br />
-          <span className="gradient-skull">DIE.</span>
+      <div className="relative z-10 container mx-auto px-4 md:px-16 flex flex-col items-center text-center">
+        <h1
+          className="text-7xl md:text-[88px] tracking-tighter mb-8 leading-[1.1] font-bold"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+        >
+          <span className="block bg-gradient-to-r from-[#c026d3] to-[#06b6d4] bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(192,38,211,0.3)]">
+            BORN TO PLAY.
+          </span>
+          <span className="block bg-gradient-to-r from-[#06b6d4] to-[#c026d3] bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+            BUILT TO DIE.
+          </span>
         </h1>
 
-        <p className="text-skull-muted text-base sm:text-lg max-w-md mx-auto mt-6 mb-10 leading-relaxed">
-          Premium gaming lifestyle gear fusing Dia de los Muertos artistry with
-          dark cyberpunk aesthetics.
+        <p className="text-[18px] text-[#cbc4d2] max-w-2xl mb-12 mx-auto leading-relaxed">
+          Cyberpunk grit meets Dia de los Muertos soul. Tactical apparel and
+          high-performance peripherals designed for the nocturnal elite.
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center mb-16">
           <Link
-            href="/shop"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-skull-neon-pink text-white font-semibold rounded-xl hover:brightness-110 active:scale-95 transition-all duration-150 shadow-lg shadow-skull-neon-pink/30"
+            href="/collection"
+            className="bg-[#c026d3] text-white text-[12px] uppercase py-4 px-8 rounded-lg hover:shadow-[0_0_20px_rgba(192,38,211,0.4)] transition-all duration-300 font-bold tracking-widest inline-block"
           >
-            Shop Now
+            Collect Now
           </Link>
           <Link
             href="/about"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-transparent text-skull-text font-semibold rounded-xl border border-skull-border hover:border-skull-neon-purple/60 hover:bg-skull-neon-purple/10 active:scale-95 transition-all duration-150"
+            className="bg-transparent border-2 border-[#06b6d4] text-[#06b6d4] text-[12px] uppercase py-4 px-8 rounded-lg hover:bg-[#06b6d4] hover:text-black hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300 font-bold tracking-widest inline-block"
           >
             Our Story
           </Link>
         </div>
 
-        {/* Stats */}
-        <div className="flex flex-wrap items-center justify-center gap-8 mt-14 text-center">
-          {[
-            { value: "10K+", label: "Community Members" },
-            { value: "50+", label: "Limited Drops" },
-            { value: "4.9★", label: "Average Rating" },
-          ].map((stat) => (
-            <div key={stat.label}>
-              <div className="font-display text-2xl gradient-skull">
-                {stat.value}
-              </div>
-              <div className="text-skull-muted text-xs mt-1">{stat.label}</div>
-            </div>
-          ))}
+        {/* Stats Row */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl mx-auto border-t border-[#494551]/50 pt-12">
+          <div className="flex flex-col items-center justify-center gap-2">
+            <span
+              className="text-[32px] text-[#c026d3] font-bold"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              10K+
+            </span>
+            <span className="text-[12px] text-[#cbc4d2] uppercase tracking-widest font-bold">
+              Community
+            </span>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-2 border-y md:border-y-0 md:border-x border-[#494551]/50 py-4 md:py-0">
+            <span
+              className="text-[32px] text-[#c026d3] font-bold"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              50+
+            </span>
+            <span className="text-[12px] text-[#cbc4d2] uppercase tracking-widest font-bold">
+              Limited Drops
+            </span>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-2">
+            <span
+              className="text-[32px] text-[#c026d3] font-bold flex items-center gap-1"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              4.9 <Star className="text-[#fbbf24] fill-[#fbbf24]" size={24} />
+            </span>
+            <span className="text-[12px] text-[#cbc4d2] uppercase tracking-widest font-bold">
+              Rating
+            </span>
+          </div>
         </div>
       </div>
-
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-skull-black to-transparent pointer-events-none" />
-    </section>
+    </header>
   );
 }

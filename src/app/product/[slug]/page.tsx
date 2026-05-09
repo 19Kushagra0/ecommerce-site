@@ -45,10 +45,10 @@ export default function ProductPage() {
           </Link>
           <span>/</span>
           <Link
-            href="/shop"
+            href="/collection"
             className="hover:text-skull-neon-pink transition-colors"
           >
-            Shop
+            Collection
           </Link>
           <span>/</span>
           <span className="text-skull-text">{product.name}</span>

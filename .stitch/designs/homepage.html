@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SKULLDROP | BORN TO PLAY. BUILT TO DIE.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#1d1b20",
+                      "on-secondary-fixed": "#1f1635",
+                      "on-primary-fixed": "#22005d",
+                      "on-tertiary": "#3e2e00",
+                      "surface-tint": "#cfbcff",
+                      "on-tertiary-container": "#503d00",
+                      "on-surface-variant": "#cbc4d2",
+                      "on-background": "#e6e0e9",
+                      "on-error": "#690005",
+                      "on-error-container": "#ffdad6",
+                      "on-tertiary-fixed-variant": "#594400",
+                      "on-secondary-fixed-variant": "#4b4263",
+                      "on-surface": "#e6e0e9",
+                      "primary-fixed": "#e9ddff",
+                      "inverse-primary": "#6750a4",
+                      "background": "#0f0d13", /* Deepened for aesthetic */
+                      "inverse-on-surface": "#322f35",
+                      "surface-variant": "#36343a",
+                      "primary-container": "#6750a4",
+                      "secondary-fixed": "#e9ddff",
+                      "surface-container-lowest": "#0a0a0a", /* Obsidian black */
+                      "surface-container": "#211f24",
+                      "surface-container-highest": "#36343a",
+                      "secondary-container": "#4d4465",
+                      "error": "#ffb4ab",
+                      "on-secondary-container": "#bfb2da",
+                      "primary": "#cfbcff",
+                      "outline-variant": "#494551",
+                      "surface-dim": "#141218",
+                      "primary-fixed-dim": "#cfbcff",
+                      "tertiary": "#e7c365",
+                      "on-primary-container": "#e0d2ff",
+                      "surface-container-high": "#2b292f",
+                      "error-container": "#93000a",
+                      "tertiary-container": "#c9a74d",
+                      "secondary-fixed-dim": "#cdc0e9",
+                      "outline": "#948e9c",
+                      "tertiary-fixed": "#ffdf93",
+                      "surface-bright": "#3b383e",
+                      "on-secondary": "#342b4b",
+                      "secondary": "#cdc0e9",
+                      "tertiary-fixed-dim": "#e7c365",
+                      "on-tertiary-fixed": "#241a00",
+                      "on-primary": "#381e72",
+                      "surface": "#141218", /* Deep charcoal */
+                      "on-primary-fixed-variant": "#4f378a",
+                      "inverse-surface": "#e6e0e9"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem", /* 12px for cards */
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "stack-lg": "32px",
+                      "stack-md": "16px",
+                      "gutter": "24px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "16px",
+                      "stack-sm": "8px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Space Grotesk"],
+                      "label-sm": ["Space Grotesk"],
+                      "headline-lg": ["Space Grotesk"],
+                      "body-lg": ["Inter"],
+                      "display-xl": ["Space Grotesk"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["32px", {"lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "display-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.surface-container-lowest'); color: theme('colors.on-surface'); }
+        
+        /* Grid Background Pattern */
+        .bg-pixel-grid {
+            background-image: linear-gradient(theme('colors.on-surface') 1px, transparent 1px), linear-gradient(90deg, theme('colors.on-surface') 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.03;
+        }
+
+        /* Marquee Animation */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: scroll 20s linear infinite;
+        }
+
+        /* Custom Hover Glows */
+        .hover-neon-purple:hover {
+            box-shadow: 0 0 20px rgba(207, 188, 255, 0.4); /* Primary color */
+        }
+        .hover-neon-cyan:hover {
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.4); /* Tailwind cyan-500 approx */
+        }
+        .glass-panel {
+            background: rgba(20, 18, 24, 0.6); /* surface with opacity */
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* New Custom Classes for Dark Theme Edit */
+        .bg-section-dark { background-color: #0a0a0a; }
+        
+        .card-apparel {
+            background-color: #0a0a0a;
+            border: 1px solid #c026d3;
+            box-shadow: 0 0 20px #c026d3;
+        }
+        .card-apparel:hover .hover-overlay { opacity: 0.08; background: radial-gradient(circle, #c026d3, transparent); }
+        .icon-apparel { filter: drop-shadow(0 0 10px #c026d3); color: #c026d3; }
+        
+        .card-peripherals {
+            background-color: #0a0a0a;
+            border: 1px solid #06b6d4;
+            box-shadow: 0 0 20px #06b6d4;
+        }
+        .card-peripherals:hover .hover-overlay { opacity: 0.08; background: radial-gradient(circle, #06b6d4, transparent); }
+        .icon-peripherals { filter: drop-shadow(0 0 10px #06b6d4); color: #06b6d4; }
+        
+        .card-accessories {
+            background-color: #0a0a0a;
+            border: 1px solid #ff2d78;
+            box-shadow: 0 0 20px #ff2d78;
+        }
+        .card-accessories:hover .hover-overlay { opacity: 0.08; background: radial-gradient(circle, #ff2d78, transparent); }
+        .icon-accessories { filter: drop-shadow(0 0 10px #ff2d78); color: #ff2d78; }
+        
+        .card-decor {
+            background-color: #0a0a0a;
+            border: 1px solid #fbbf24;
+            box-shadow: 0 0 20px #fbbf24;
+        }
+        .card-decor:hover .hover-overlay { opacity: 0.08; background: radial-gradient(circle, #fbbf24, transparent); }
+        .icon-decor { filter: drop-shadow(0 0 10px #fbbf24); color: #fbbf24; }
+        
+        .glow-bestseller { box-shadow: 0 0 16px #fbbf24; }
+        .glow-new { box-shadow: 0 0 16px #06b6d4; }
+        .glow-sale { box-shadow: 0 0 16px #ff2d78; }
+        
+        .price-neon { text-shadow: 0 0 10px #ff2d78; color: #ff2d78; }
+        
+        .btn-add-cart {
+            background-color: #c026d3;
+            color: white;
+            transition: box-shadow 0.3s ease;
+        }
+        .btn-add-cart:hover { box-shadow: 0 0 14px #c026d3; }
+        
+        .cult-section-bg {
+            background: radial-gradient(circle at center, #1a0a2e 0%, #0a0a0a 100%);
+        }
+        .cult-skull-glow { filter: drop-shadow(0 0 20px #c026d3); }
+        
+        .input-email {
+            background-color: #0f0f0f;
+            border: none;
+            border-bottom: 2px solid #06b6d4;
+            box-shadow: 0 4px 10px rgba(6, 182, 212, 0.2);
+        }
+        .input-email:focus { outline: none; box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4); }
+        
+        .btn-cult {
+            background-color: #c026d3;
+            color: white;
+            box-shadow: 0 0 16px #c026d3;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-primary selection:text-on-primary">
+<!-- Navbar Component -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 w-full max-w-[1920px] mx-auto">
+<!-- Brand -->
+<div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">skull</span>
+<span class="font-headline-md text-headline-md font-bold tracking-tighter bg-gradient-to-r from-primary to-[#06b6d4] bg-clip-text text-transparent">SKULLDROP</span>
+</div>
+<!-- Desktop Navigation Links -->
+<div class="hidden md:flex items-center gap-gutter">
+<a class="font-label-sm text-label-sm text-primary font-bold hover:drop-shadow-[0_0_8px_rgba(207,188,255,0.8)] transition-all duration-300 uppercase" href="#">DROPS</a>
+<a class="font-label-sm text-label-sm text-on-surface/70 font-medium hover:text-primary transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(207,188,255,0.8)] uppercase" href="#">COLLECTIONS</a>
+<a class="font-label-sm text-label-sm text-on-surface/70 font-medium hover:text-primary transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(207,188,255,0.8)] uppercase" href="#">VAULT</a>
+<a class="font-label-sm text-label-sm text-on-surface/70 font-medium hover:text-primary transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(207,188,255,0.8)] uppercase" href="#">THE CULT</a>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-stack-md text-primary">
+<button class="hover:text-primary transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(207,188,255,0.8)] scale-95 duration-200 ease-in-out">
+<span class="material-symbols-outlined text-2xl">search</span>
+</button>
+<button class="relative hover:text-primary transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(207,188,255,0.8)] scale-95 duration-200 ease-in-out">
+<span class="material-symbols-outlined text-2xl">shopping_cart</span>
+<span class="absolute -top-2 -right-2 bg-error text-on-error font-label-sm text-[10px] w-4 h-4 flex items-center justify-center rounded-none shadow-[0_0_8px_rgba(255,180,171,0.6)]">3</span>
+</button>
+<button class="hover:text-primary transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(207,188,255,0.8)] scale-95 duration-200 ease-in-out hidden md:block">
+<span class="material-symbols-outlined text-2xl">person</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative min-h-[921px] flex items-center justify-center pt-24 overflow-hidden bg-surface-container-lowest border-b border-outline-variant">
+<!-- Background Elements -->
+<div class="absolute inset-0 bg-pixel-grid pointer-events-none z-0"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(207,188,255,0.15)_0%,transparent_70%)] z-0"></div>
+<div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none z-0">
+<span class="material-symbols-outlined text-[800px] text-primary" style="font-variation-settings: 'FILL' 1;">skull</span>
+</div>
+<div class="relative z-10 container mx-auto px-margin-mobile md:px-margin-desktop flex flex-col items-center text-center">
+<h1 class="font-display-xl text-display-xl tracking-tighter mb-stack-md">
+<span class="block bg-gradient-to-r from-primary to-[#06b6d4] bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(207,188,255,0.3)]">BORN TO PLAY.</span>
+<span class="block bg-gradient-to-r from-[#06b6d4] to-primary bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(6,182,212,0.3)]">BUILT TO DIE.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-stack-lg mx-auto">
+                Cyberpunk grit meets Dia de los Muertos soul. Tactical apparel and high-performance peripherals designed for the nocturnal elite.
+            </p>
+<div class="flex flex-col sm:flex-row gap-stack-md w-full sm:w-auto justify-center mb-16">
+<button class="bg-primary text-on-primary font-label-sm text-label-sm uppercase py-4 px-8 rounded-lg hover-neon-purple transition-all duration-300 font-bold tracking-widest">
+                    Shop Now
+                </button>
+<button class="bg-transparent border-2 border-[#06b6d4] text-[#06b6d4] font-label-sm text-label-sm uppercase py-4 px-8 rounded-lg hover:bg-[#06b6d4] hover:text-black transition-all duration-300 font-bold tracking-widest hover-neon-cyan">
+                    Our Story
+                </button>
+</div>
+<!-- Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter w-full max-w-4xl mx-auto border-t border-outline-variant/50 pt-stack-lg">
+<div class="flex flex-col items-center justify-center gap-2">
+<span class="font-headline-md text-headline-md text-primary font-bold">10K+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Community</span>
+</div>
+<div class="flex flex-col items-center justify-center gap-2 border-y md:border-y-0 md:border-x border-outline-variant/50 py-4 md:py-0">
+<span class="font-headline-md text-headline-md text-primary font-bold">50+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Limited Drops</span>
+</div>
+<div class="flex flex-col items-center justify-center gap-2">
+<span class="font-headline-md text-headline-md text-primary font-bold flex items-center gap-1">
+                        4.9 <span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Rating</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Marquee -->
+<div class="w-full bg-[#ff2d78] text-white py-3 overflow-hidden shadow-[0_0_15px_rgba(255,45,120,0.5)] z-20 relative">
+<div class="flex whitespace-nowrap animate-marquee font-label-sm text-label-sm tracking-[0.2em] font-black uppercase drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
+<span class="mx-4">— FREE SHIPPING OVER $75 —</span>
+<span class="mx-4">LIMITED DROPS</span>
+<span class="mx-4">— NEW GEAR EVERY FRIDAY —</span>
+<span class="mx-4">CANDY SKULL CULTURE</span>
+<span class="mx-4">— FREE SHIPPING OVER $75 —</span>
+<span class="mx-4">LIMITED DROPS</span>
+<span class="mx-4">— NEW GEAR EVERY FRIDAY —</span>
+<span class="mx-4">CANDY SKULL CULTURE</span>
+</div>
+</div>
+<!-- Main Content -->
+<main class="w-full bg-section-dark px-margin-mobile md:px-margin-desktop py-24 space-y-32">
+<!-- Categories Bento Grid -->
+<section class="space-y-12 max-w-[1920px] mx-auto">
+<!-- Header Row -->
+<div class="flex justify-between items-center border-b border-[#c026d3]/20 pb-6">
+<h2 class="font-headline-lg text-headline-lg font-bold tracking-tight">
+<span class="text-white">CATE</span><span class="bg-gradient-to-r from-[#c026d3] to-[#06b6d4] bg-clip-text text-transparent">GORIES</span>
+</h2>
+<a class="font-label-sm text-[10px] text-white uppercase tracking-[0.2em] px-5 py-2.5 rounded-full border border-[#06b6d4]/50 hover:border-[#c026d3] transition-colors flex items-center gap-2 group" href="#">
+      VIEW ALL <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<!-- Card Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- 1. Apparel -->
+<div class="group relative rounded-[12px] h-[280px] overflow-hidden border border-[#c026d3] shadow-[0_0_20px_rgba(192,38,211,0.6)]">
+<img alt="Apparel" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL_oa1OVSc-fXIerSmoV9m_VjmTnewRD5kXs6Vfp2z4j9ZUkt1EGT58f37R0PUy5ROjCDNyoeCjW-mnzsafkz89Z89udcVBnQQc-ht9hmXziDi6et4oPJO7bMjw8rSFZW4aFrxY3YeDjBfIrSTSmogsbDGZ62KIbvfcN1SmxGj-980uWLiGPzUwD5c6qk6gNBKRVz6OM8ZEeyVlkKBfzNR89e07yUJj-83Cv2AXgjR5JzxvPall0zJ3KCGA2yxNd1y7td6dx60QObu"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/85"></div>
+<!-- Top-Left Badge -->
+<div class="absolute top-6 left-6 w-12 h-12 rounded-full flex items-center justify-center bg-[#c026d3]/20 border border-[#c026d3]">
+<span class="material-symbols-outlined text-[#c026d3] text-2xl">apparel</span>
+</div>
+<!-- Bottom Content -->
+<div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+<div class="flex flex-col">
+<h3 class="font-display-xl text-[28px] font-bold text-white">Apparel</h3>
+<span class="text-[#c026d3] font-label-sm text-[10px] uppercase tracking-widest">12 ITEMS</span>
+</div>
+<div class="w-11 h-11 rounded-full border border-[#c026d3] flex items-center justify-center text-[#c026d3] group-hover:bg-[#c026d3] group-hover:text-black transition-all duration-300">
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+<a class="absolute inset-0 z-20" href="#"></a>
+</div>
+<!-- 2. Peripherals -->
+<div class="group relative rounded-[12px] h-[280px] overflow-hidden border border-[#06b6d4] shadow-[0_0_20px_rgba(6,182,212,0.6)]">
+<img alt="Peripherals" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwV7EnauXDmVN7eX1OjbnzxqOiCMTa9PR9OptZuMXQslmw-aXil4sITsoviIJDLlFbdo6de0ZI4pdJwGexSsp5ycmXkARzsKjARHmUdElJeIk8Qdb5MiFH_aeinGhav4XCE-oMObHHm3KlIYgQ_JajFtgpyHNGRORqWiNEq0PONeAjR_XJHG8KfAUIwTf04IiqHu9EEVLAr9v6UImb37iF39-0anIPxFhr0dEzCSqN5CTZ7Vf1oq2m3gtqcFjdCEvmkj1WxYdXBeEz"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/85"></div>
+<!-- Top-Left Badge -->
+<div class="absolute top-6 left-6 w-12 h-12 rounded-full flex items-center justify-center bg-[#06b6d4]/20 border border-[#06b6d4]">
+<span class="material-symbols-outlined text-[#06b6d4] text-2xl">mouse</span>
+</div>
+<!-- Bottom Content -->
+<div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+<div class="flex flex-col">
+<h3 class="font-display-xl text-[28px] font-bold text-white">Peripherals</h3>
+<span class="text-[#06b6d4] font-label-sm text-[10px] uppercase tracking-widest">8 ITEMS</span>
+</div>
+<div class="w-11 h-11 rounded-full border border-[#06b6d4] flex items-center justify-center text-[#06b6d4] group-hover:bg-[#06b6d4] group-hover:text-black transition-all duration-300">
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+<a class="absolute inset-0 z-20" href="#"></a>
+</div>
+<!-- 3. Accessories -->
+<div class="group relative rounded-[12px] h-[280px] overflow-hidden border border-[#ff2d78] shadow-[0_0_20px_rgba(255,45,120,0.6)]">
+<img alt="Accessories" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKvdrckG633XTCmRDvZsDpKpIrNoClrorcqHfkS-UoBZj-Lfu0dWFusJd5CuDKDHj3gSNlZtlWjy4sQxAmLvo6phezrmbvCrOcKToVm_zzMGj3Mzsx6TZEiOd7EnpO2EqUOZoFsEGuFc9tJ9luiiFkRxaB0BHOg-3VAsU0O3rWObIkY1muiksxI2iVhHJaIVFsLm8181tyk7KPeYAAigzl6zpUC0_St9eruR9HlkNm6lEGxD39H7rrIXG2Co9lV2sBQXJt9YPiT40f"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/85"></div>
+<!-- Top-Left Badge -->
+<div class="absolute top-6 left-6 w-12 h-12 rounded-full flex items-center justify-center bg-[#ff2d78]/20 border border-[#ff2d78]">
+<span class="material-symbols-outlined text-[#ff2d78] text-2xl">watch</span>
+</div>
+<!-- Bottom Content -->
+<div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+<div class="flex flex-col">
+<h3 class="font-display-xl text-[28px] font-bold text-white">Accessories</h3>
+<span class="text-[#ff2d78] font-label-sm text-[10px] uppercase tracking-widest">24 ITEMS</span>
+</div>
+<div class="w-11 h-11 rounded-full border border-[#ff2d78] flex items-center justify-center text-[#ff2d78] group-hover:bg-[#ff2d78] group-hover:text-black transition-all duration-300">
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+<a class="absolute inset-0 z-20" href="#"></a>
+</div>
+<!-- 4. Decor -->
+<div class="group relative rounded-[12px] h-[280px] overflow-hidden border border-[#fbbf24] shadow-[0_0_20px_rgba(251,191,36,0.6)]">
+<img alt="Decor" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtlHx5R_vSQWIX04ScFo42YbT79Kq1lfKEqx_zt12xM7e7xi-onNxd3fEyeZPZbuldxGYZiNHu8OX1qGSdaKPin3BfS55LeEoQDnQIQHrqM9wHn6LqNROiO0S1yGOu8--XWUCBdbQ7eYcu6p3b3QrQx37BP9BTkFHMp9Sol3qRJ8Z5Thbv8R4h-1NJfAEWpFZR9EteIRApL2KhJIlKhH8C7sliSlrsJOCENnE-EZU3KDkQ4A_sTcv_1c98m9s6iiL672-_lFZWEUdR"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/85"></div>
+<!-- Top-Left Badge -->
+<div class="absolute top-6 left-6 w-12 h-12 rounded-full flex items-center justify-center bg-[#fbbf24]/20 border border-[#fbbf24]">
+<span class="material-symbols-outlined text-[#fbbf24] text-2xl">frame_inspect</span>
+</div>
+<!-- Bottom Content -->
+<div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+<div class="flex flex-col">
+<h3 class="font-display-xl text-[28px] font-bold text-white">Decor</h3>
+<span class="text-[#fbbf24] font-label-sm text-[10px] uppercase tracking-widest">5 ITEMS</span>
+</div>
+<div class="w-11 h-11 rounded-full border border-[#fbbf24] flex items-center justify-center text-[#fbbf24] group-hover:bg-[#fbbf24] group-hover:text-black transition-all duration-300">
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+<a class="absolute inset-0 z-20" href="#"></a>
+</div>
+</div>
+</section>
+<!-- Featured Drops -->
+<section class="space-y-stack-lg max-w-[1920px] mx-auto">
+<div class="flex justify-between items-end border-b border-[#06b6d4]/30 pb-4 shadow-[0_4px_15px_-3px_rgba(6,182,212,0.1)]">
+<h2 class="font-headline-lg text-headline-lg font-bold tracking-tight bg-gradient-to-r from-[#c026d3] to-[#06b6d4] bg-clip-text text-transparent">DROP OF THE WEEK</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Product 1 -->
+<div class="bg-[#0a0a0a] rounded-xl p-gutter glow-bestseller transition-all duration-300 flex flex-col h-full relative group">
+<div class="absolute top-4 left-4 z-10 bg-[#fbbf24] text-black font-label-sm text-label-sm px-2 py-1 uppercase font-bold shadow-[0_0_10px_rgba(251,191,36,0.5)]">BESTSELLER</div>
+<div class="aspect-square bg-[#111111] rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-[#fbbf24] opacity-15 mix-blend-color z-0"></div>
+<img alt="Product Image" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 relative z-10 mix-blend-luminosity hover:mix-blend-normal" data-alt="A highly detailed close-up of a futuristic cyber-punk sneaker resting on a dark, reflective surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL_oa1OVSc-fXIerSmoV9m_VjmTnewRD5kXs6Vfp2z4j9ZUkt1EGT58f37R0PUy5ROjCDNyoeCjW-mnzsafkz89Z89udcVBnQQc-ht9hmXziDi6et4oPJO7bMjw8rSFZW4aFrxY3YeDjBfIrSTSmogsbDGZ62KIbvfcN1SmxGj-980uWLiGPzUwD5c6qk6gNBKRVz6OM8ZEeyVlkKBfzNR89e07yUJj-83Cv2AXgjR5JzxvPall0zJ3KCGA2yxNd1y7td6dx60QObu"/>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-[20px] font-bold text-on-surface leading-tight">Neon-Muertos Hoodie</h3>
+<span class="font-headline-md text-[18px] price-neon font-bold">$85</span>
+</div>
+<div class="flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<button class="mt-auto w-full btn-add-cart font-label-sm text-label-sm py-3 rounded-lg uppercase tracking-widest font-bold">Add to Cart</button>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="bg-[#0a0a0a] rounded-xl p-gutter glow-new transition-all duration-300 flex flex-col h-full relative group">
+<div class="absolute top-4 left-4 z-10 bg-[#06b6d4] text-black font-label-sm text-label-sm px-2 py-1 uppercase font-bold shadow-[0_0_10px_rgba(6,182,212,0.5)]">NEW</div>
+<div class="aspect-square bg-[#111111] rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-[#06b6d4] opacity-15 mix-blend-color z-0"></div>
+<img alt="Product Image" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 relative z-10 mix-blend-luminosity hover:mix-blend-normal" data-alt="A tactical, dark cyberpunk backpack displayed against a pitch-black background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtlHx5R_vSQWIX04ScFo42YbT79Kq1lfKEqx_zt12xM7e7xi-onNxd3fEyeZPZbuldxGYZiNHu8OX1qGSdaKPin3BfS55LeEoQDnQIQHrqM9wHn6LqNROiO0S1yGOu8--XWUCBdbQ7eYcu6p3b3QrQx37BP9BTkFHMp9Sol3qRJ8Z5Thbv8R4h-1NJfAEWpFZR9EteIRApL2KhJIlKhH8C7sliSlrsJOCENnE-EZU3KDkQ4A_sTcv_1c98m9s6iiL672-_lFZWEUdR"/>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-[20px] font-bold text-on-surface leading-tight">Tactical Rig Sling</h3>
+<span class="font-headline-md text-[18px] price-neon font-bold">$120</span>
+</div>
+<div class="flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-on-surface-variant">star</span>
+</div>
+<button class="mt-auto w-full btn-add-cart font-label-sm text-label-sm py-3 rounded-lg uppercase tracking-widest font-bold">Add to Cart</button>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="bg-[#0a0a0a] rounded-xl p-gutter glow-sale transition-all duration-300 flex flex-col h-full relative group">
+<div class="absolute top-4 left-4 z-10 bg-[#ff2d78] text-white font-label-sm text-label-sm px-2 py-1 uppercase font-bold shadow-[0_0_10px_rgba(255,45,120,0.5)]">SALE</div>
+<div class="aspect-square bg-[#111111] rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-[#ff2d78] opacity-15 mix-blend-color z-0"></div>
+<img alt="Product Image" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 relative z-10 mix-blend-luminosity hover:mix-blend-normal" data-alt="A sleek, high-performance gaming mouse resting on a textured dark mousepad." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwV7EnauXDmVN7eX1OjbnzxqOiCMTa9PR9OptZuMXQslmw-aXil4sITsoviIJDLlFbdo6de0ZI4pdJwGexSsp5ycmXkARzsKjARHmUdElJeIk8Qdb5MiFH_aeinGhav4XCE-oMObHHm3KlIYgQ_JajFtgpyHNGRORqWiNEq0PONeAjR_XJHG8KfAUIwTf04IiqHu9EEVLAr9v6UImb37iF39-0anIPxFhr0dEzCSqN5CTZ7Vf1oq2m3gtqcFjdCEvmkj1WxYdXBeEz"/>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-[20px] font-bold text-on-surface leading-tight">Wraith Precision Mouse</h3>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-on-surface-variant line-through">$89</span>
+<span class="font-headline-md text-[18px] price-neon font-bold">$65</span>
+</div>
+</div>
+<div class="flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<button class="mt-auto w-full btn-add-cart font-label-sm text-label-sm py-3 rounded-lg uppercase tracking-widest font-bold">Add to Cart</button>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="bg-[#0a0a0a] rounded-xl p-gutter glow-sale transition-all duration-300 flex flex-col h-full relative group hidden lg:flex">
+<div class="aspect-square bg-[#111111] rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-[#ff2d78] opacity-15 mix-blend-color z-0"></div>
+<img alt="Product Image" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 relative z-10 mix-blend-luminosity hover:mix-blend-normal" data-alt="A pair of premium, over-ear gaming headphones floating in a dark void." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKvdrckG633XTCmRDvZsDpKpIrNoClrorcqHfkS-UoBZj-Lfu0dWFusJd5CuDKDHj3gSNlZtlWjy4sQxAmLvo6phezrmbvCrOcKToVm_zzMGj3Mzsx6TZEiOd7EnpO2EqUOZoFsEGuFc9tJ9luiiFkRxaB0BHOg-3VAsU0O3rWObIkY1muiksxI2iVhHJaIVFsLm8181tyk7KPeYAAigzl6zpUC0_St9eruR9HlkNm6lEGxD39H7rrIXG2Co9lV2sBQXJt9YPiT40f"/>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-[20px] font-bold text-on-surface leading-tight">Calavera Audio Headset</h3>
+<span class="font-headline-md text-[18px] price-neon font-bold">$140</span>
+</div>
+<div class="flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-tertiary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm text-on-surface-variant">star</span>
+</div>
+<button class="mt-auto w-full btn-add-cart font-label-sm text-label-sm py-3 rounded-lg uppercase tracking-widest font-bold">Add to Cart</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Join The Cult (Email Signup) -->
+<section class="cult-section-bg rounded-xl p-12 text-center max-w-4xl mx-auto relative overflow-hidden">
+<div class="absolute inset-0 opacity-5 pointer-events-none z-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[400px] text-white opacity-30" style="font-variation-settings: 'FILL' 1;">skull</span>
+</div>
+<div class="relative z-10 flex flex-col items-center">
+<span class="material-symbols-outlined text-6xl text-white mb-6 cult-skull-glow" style="font-variation-settings: 'FILL' 1;">skull</span>
+<h2 class="font-display-xl text-5xl tracking-tighter mb-4 bg-gradient-to-r from-[#c026d3] to-[#06b6d4] bg-clip-text text-transparent">JOIN THE CULT</h2>
+<p class="font-body-lg text-body-lg text-[#e2e8f0] mb-8 max-w-md mx-auto">Subscribe for exclusive early access to limited drops, underground events, and member-only gear.</p>
+<form class="w-full max-w-md flex flex-col sm:flex-row gap-4">
+<input class="flex-grow input-email text-on-surface font-label-sm text-label-sm uppercase px-4 py-3 transition-all rounded-t-sm" placeholder="ENTER YOUR EMAIL" required="" type="email"/>
+<button class="btn-cult font-label-sm text-label-sm uppercase py-3 px-8 rounded-lg transition-all duration-300 font-bold tracking-widest whitespace-nowrap" type="submit">
+                        Get Early Access
+                    </button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="bg-surface-container-lowest border-t border-[#c026d3]/30 w-full pt-16 shadow-[0_-4px_15px_-3px_rgba(192,38,211,0.1)]">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto mb-16">
+<!-- Col 1: Brand -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">skull</span>
+<span class="font-headline-lg text-headline-lg font-black text-on-surface tracking-tighter text-3xl">SKULLDROP</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mt-2">
+                    Designed for the nocturnal. Gear built to survive the digital wasteland.
+                </p>
+<div class="flex gap-4 mt-4 text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="hover:text-[#06b6d4] transition-colors" href="#"><span class="material-symbols-outlined">forum</span></a>
+<a class="hover:text-[#ff2d78] transition-colors" href="#"><span class="material-symbols-outlined">photo_camera</span></a>
+</div>
+</div>
+<!-- Col 2: Shop Links -->
+<div class="flex flex-col gap-4">
+<h4 class="font-headline-md text-[18px] text-on-surface font-bold">ARMORY</h4>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors uppercase" href="#">Latest Drops</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors uppercase" href="#">Apparel</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors uppercase" href="#">Peripherals</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors uppercase" href="#">Gift Cards</a>
+</div>
+<!-- Col 3: Support Links -->
+<div class="flex flex-col gap-4">
+<h4 class="font-headline-md text-[18px] text-on-surface font-bold">SUPPORT</h4>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-[#06b6d4] transition-colors uppercase" href="#">Shipping Info</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-[#06b6d4] transition-colors uppercase" href="#">Returns &amp; Exchanges</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-[#06b6d4] transition-colors uppercase" href="#">FAQ</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-[#06b6d4] transition-colors uppercase" href="#">Contact Us</a>
+</div>
+<!-- Col 4: JSON Links -->
+<div class="flex flex-col gap-4">
+<h4 class="font-headline-md text-[18px] text-on-surface font-bold">LEGAL</h4>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-colors uppercase" href="#">PRIVACY POLICY</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-colors uppercase" href="#">TERMS OF SERVICE</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-colors uppercase" href="#">SHIPPING</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-tertiary transition-colors uppercase" href="#">CONTACT</a>
+</div>
+</div>
+<!-- Bottom Bar -->
+<div class="border-t border-primary/20 bg-black py-6 text-center shadow-[0_-5px_15px_rgba(207,188,255,0.05)]">
+<p class="font-label-sm text-label-sm text-primary tracking-widest opacity-80 hover:opacity-100 transition-opacity">
+                © 2024 SKULLDROP. DESIGNED FOR THE NOCTURNAL.
+            </p>
+</div>
+</footer>
+</body></html>

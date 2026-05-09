@@ -46,15 +46,15 @@ export default function Footer() {
           {/* Shop */}
           <div>
             <h3 className="font-display text-lg text-skull-text tracking-wider mb-4">
-              SHOP
+              COLLECT
             </h3>
             <ul className="space-y-2">
               {[
-                { label: "All Products", href: "/shop" },
-                { label: "Apparel", href: "/shop?category=apparel" },
-                { label: "Peripherals", href: "/shop?category=peripherals" },
-                { label: "Accessories", href: "/shop?category=accessories" },
-                { label: "Decor", href: "/shop?category=decor" },
+                { label: "All Products", href: "/collection" },
+                { label: "Apparel", href: "/collection?category=apparel" },
+                { label: "Peripherals", href: "/collection?category=peripherals" },
+                { label: "Accessories", href: "/collection?category=accessories" },
+                { label: "Decor", href: "/collection?category=decor" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
