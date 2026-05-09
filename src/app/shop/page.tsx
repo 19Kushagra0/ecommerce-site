@@ -15,13 +15,14 @@ interface ShopPageProps {
 
 export default function ShopPage({ searchParams }: ShopPageProps) {
   const { category: initialCategory } = use(searchParams);
-  const router = useRouter();
-  const pathname = usePathname();
-  const currentSearchParams = useSearchParams();
 
   // easy way to get search params
   // const params = use(searchParams);
   // const initialCategory = params.category;
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const currentSearchParams = useSearchParams();
 
   const [activeCategory, setActiveCategory] = useState(
     initialCategory ?? "all",
@@ -38,6 +39,20 @@ export default function ShopPage({ searchParams }: ShopPageProps) {
       return el.category === activeCategory;
     }
   });
+
+  function handleCategorySelect(categoryId: string) {
+    const params = new URLSearchParams(currentSearchParams.toString());
+    if (categoryId === "all") {
+      params.delete("category");
+    } else {
+      params.set("category", categoryId);
+    }
+    const queryString = params.toString();
+
+    router.replace(queryString ? `${pathname}?${queryString}` : pathname);
+
+    setActiveCategory(categoryId);
+  }
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-4">
@@ -65,7 +80,7 @@ export default function ShopPage({ searchParams }: ShopPageProps) {
           <CategoryFilter
             categories={categories}
             activeCategory={activeCategory}
-            onSelect={setActiveCategory}
+            onSelect={handleCategorySelect}
           />
         </div>
 

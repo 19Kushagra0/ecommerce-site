@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Menu, X, Skull } from 'lucide-react';
-import clsx from 'clsx';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X, Skull } from "lucide-react";
+import clsx from "clsx";
 
 const NAV_LINKS = [
-  { href: '/', label: 'Home' },
-  { href: '/shop', label: 'Shop' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+  { href: "/", label: "Home" },
+  { href: "/shop", label: "Shop" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -20,18 +20,18 @@ export default function Navbar() {
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handler, { passive: true });
-    return () => window.removeEventListener('scroll', handler);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
   }, []);
 
   return (
     <>
       <nav
         className={clsx(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
           scrolled
-            ? 'backdrop-blur-md bg-skull-black/90 border-b border-skull-border shadow-lg shadow-skull-neon-purple/5'
-            : 'bg-skull-black/60 backdrop-blur-sm'
+            ? "backdrop-blur-md bg-skull-black/90 border-skull-border shadow-lg shadow-skull-neon-purple/5"
+            : "bg-skull-black/60 border-transparent backdrop-blur-sm",
         )}
       >
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
@@ -50,10 +50,10 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   className={clsx(
-                    'text-sm font-medium tracking-wide transition-colors duration-200 relative pb-0.5',
+                    "text-sm font-medium tracking-wide transition-colors duration-200 relative pb-0.5",
                     pathname === link.href
-                      ? 'text-skull-neon-pink after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-skull-neon-pink'
-                      : 'text-skull-muted hover:text-skull-text'
+                      ? "text-skull-neon-pink after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-skull-neon-pink"
+                      : "text-skull-muted hover:text-skull-text",
                   )}
                 >
                   {link.label}
@@ -76,23 +76,23 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       <div
         className={clsx(
-          'fixed inset-0 z-[60] lg:hidden transition-all duration-300',
-          drawerOpen ? 'pointer-events-auto' : 'pointer-events-none'
+          "fixed inset-0 z-[60] lg:hidden transition-all duration-300",
+          drawerOpen ? "pointer-events-auto" : "pointer-events-none",
         )}
       >
         {/* Backdrop */}
         <div
           className={clsx(
-            'absolute inset-0 bg-skull-black/80 backdrop-blur-sm transition-opacity duration-300',
-            drawerOpen ? 'opacity-100' : 'opacity-0'
+            "absolute inset-0 bg-skull-black/80 backdrop-blur-sm transition-opacity duration-300",
+            drawerOpen ? "opacity-100" : "opacity-0",
           )}
           onClick={() => setDrawerOpen(false)}
         />
         {/* Panel */}
         <div
           className={clsx(
-            'absolute right-0 top-0 bottom-0 w-72 bg-skull-dark border-l border-skull-border flex flex-col p-8 transition-transform duration-300',
-            drawerOpen ? 'translate-x-0' : 'translate-x-full'
+            "absolute right-0 top-0 bottom-0 w-72 bg-skull-dark border-l border-skull-border flex flex-col p-8 transition-transform duration-300",
+            drawerOpen ? "translate-x-0" : "translate-x-full",
           )}
         >
           <button
@@ -105,7 +105,9 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2 mb-10">
             <Skull className="w-6 h-6 text-skull-neon-pink" />
-            <span className="font-display text-xl gradient-skull">SKULLDROP</span>
+            <span className="font-display text-xl gradient-skull">
+              SKULLDROP
+            </span>
           </div>
 
           <ul className="flex flex-col gap-6">
@@ -115,10 +117,10 @@ export default function Navbar() {
                   href={link.href}
                   onClick={() => setDrawerOpen(false)}
                   className={clsx(
-                    'font-display text-3xl tracking-wider transition-colors duration-200',
+                    "font-display text-3xl tracking-wider transition-colors duration-200",
                     pathname === link.href
-                      ? 'text-skull-neon-pink'
-                      : 'text-skull-text hover:text-skull-neon-purple'
+                      ? "text-skull-neon-pink"
+                      : "text-skull-text hover:text-skull-neon-purple",
                   )}
                 >
                   {link.label}
@@ -129,7 +131,9 @@ export default function Navbar() {
 
           <div className="mt-auto pt-8 border-t border-skull-border">
             <p className="text-skull-muted text-xs">© 2025 SkullDrop</p>
-            <p className="text-skull-muted text-xs mt-1">Born to Play. Built to Die.</p>
+            <p className="text-skull-muted text-xs mt-1">
+              Born to Play. Built to Die.
+            </p>
           </div>
         </div>
       </div>
