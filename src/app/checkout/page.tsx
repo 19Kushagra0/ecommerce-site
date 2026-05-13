@@ -8,11 +8,28 @@ import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
 
+import { useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 export default function CheckoutPage() {
   const { cart, subtotal } = useCart();
+  const { data: session, isPending } = useSession();
+  const router = useRouter();
+  
   const shipping = 15.0;
   const tax = subtotal * 0.08;
   const total = subtotal + shipping + tax;
+
+  useEffect(() => {
+    if (!isPending && !session) {
+      router.push("/sign-in");
+    }
+  }, [session, isPending, router]);
+
+  if (isPending || !session) {
+    return <div className="min-h-screen pt-32 pb-16 px-4 flex justify-center items-center text-skull-neon-pink font-mono uppercase tracking-widest text-sm animate-pulse">Initializing secure connection...</div>;
+  }
 
   if (cart.length === 0) {
     return (

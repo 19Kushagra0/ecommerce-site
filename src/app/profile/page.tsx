@@ -6,10 +6,27 @@ import { User, Package, Settings, LogOut, Shield, ChevronRight, Zap } from "luci
 import Link from "next/link";
 import clsx from "clsx";
 
+import { useSession, signOut } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 export default function ProfilePage() {
+  const { data: session, isPending } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isPending && !session) {
+      router.push("/sign-in");
+    }
+  }, [session, isPending, router]);
+
+  if (isPending || !session) {
+    return <div className="min-h-screen pt-32 pb-16 px-4 flex justify-center items-center text-skull-neon-blue font-mono uppercase tracking-widest text-sm animate-pulse">Verifying clearance...</div>;
+  }
+
   const user = {
-    codename: "CYBER_RUNNER_88",
-    email: "runner@skulldrop.io",
+    codename: session.user.name || "CYBER_RUNNER_88",
+    email: session.user.email || "runner@skulldrop.io",
     clearance: "LEVEL 4",
     credits: 1450.50,
     dropsJoined: 12
@@ -58,10 +75,14 @@ export default function ProfilePage() {
                 { icon: Package, label: "Your Inventory", active: true },
                 { icon: Shield, label: "Security Keys", active: false },
                 { icon: Settings, label: "System Config", active: false },
-                { icon: LogOut, label: "Terminate Session", active: false, color: "text-skull-neon-pink" },
+                { icon: LogOut, label: "Terminate Session", active: false, color: "text-skull-neon-pink", action: async () => {
+                  await signOut();
+                  router.push("/sign-in");
+                }},
               ].map((item, i) => (
                 <button 
                   key={i} 
+                  onClick={item.action}
                   className={clsx(
                     "w-full flex items-center justify-between px-6 py-4 text-sm transition-all border-b border-white/5 last:border-0",
                     item.active ? "bg-white/5 text-white" : "text-skull-muted hover:bg-white/5 hover:text-white"
