@@ -20,7 +20,7 @@ export default function SignUpPage() {
     const { data, error } = await signUp.email({ email, password, name });
 
     if (error) {
-      setErrorMsg(error.message);
+      setErrorMsg(error.message || "An unknown error occurred");
     } else {
       router.push("/sign-in?message=Clearance granted! Please authenticate.");
     }
