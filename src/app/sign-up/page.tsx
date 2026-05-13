@@ -5,58 +5,121 @@ import { useState } from "react";
 import { signUp } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Skull, Lock, Mail, User, ArrowRight } from "lucide-react";
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMsg("");
     const { data, error } = await signUp.email({ email, password, name });
 
     if (error) {
-      alert(error.message);
+      setErrorMsg(error.message);
     } else {
-      router.push("/sign-in?message=Signed up successfully! Please log in.");
+      router.push("/sign-in?message=Clearance granted! Please authenticate.");
     }
   };
 
   return (
-    <div className="p-8 max-w-md mx-auto mt-20 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-900">
-        Sign Up
-      </h2>
-      <form onSubmit={handleSignUp} className="space-y-4 text-gray-900">
-        <input
-          type="text"
-          placeholder="Full Name"
-          required
-          className="border p-2 w-full rounded"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          required
-          className="border p-2 w-full rounded"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          required
-          className="border p-2 w-full rounded"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button
-          type="submit"
-          className="bg-blue-600 text-white p-2 w-full rounded hover:bg-blue-700"
-        >
-          Sign Up
-        </button>
-      </form>
+    <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-16 bg-[#050505] relative overflow-hidden">
+      {/* Background grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+
+      <div className="w-full max-w-md bg-skull-dark border border-white/10 rounded-2xl p-8 relative z-10 shadow-2xl shadow-skull-neon-blue/5">
+        <div className="flex justify-center mb-6">
+          <div className="p-3 bg-white/5 rounded-full border border-white/10">
+            <Skull className="w-8 h-8 text-skull-neon-blue" />
+          </div>
+        </div>
+
+        <h2 className="text-3xl font-display font-bold mb-2 text-center text-white uppercase tracking-tighter">
+          Initiate Protocol
+        </h2>
+        <p className="text-center text-skull-muted text-xs uppercase tracking-widest mb-8">
+          Register new operative profile
+        </p>
+
+        {errorMsg && (
+          <div className="mb-6 p-3 border border-red-500/30 bg-red-500/10 rounded-lg text-red-400 text-xs text-center uppercase tracking-wider">
+            {errorMsg}
+          </div>
+        )}
+
+        <form onSubmit={handleSignUp} className="space-y-5">
+          <div className="space-y-1">
+            <label className="text-[10px] text-skull-muted uppercase tracking-widest font-bold ml-1">
+              Codename
+            </label>
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="CYBER_RUNNER"
+                required
+                className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white placeholder-white/20 focus:outline-none focus:border-skull-neon-blue transition-colors text-sm"
+                onChange={(e) => setName(e.target.value)}
+              />
+              <User className="absolute left-3 top-3.5 w-4 h-4 text-skull-muted" />
+            </div>
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-[10px] text-skull-muted uppercase tracking-widest font-bold ml-1">
+              Secure Email
+            </label>
+            <div className="relative">
+              <input
+                type="email"
+                placeholder="OPERATIVE@SKULLDROP.IO"
+                required
+                className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white placeholder-white/20 focus:outline-none focus:border-skull-neon-blue transition-colors text-sm"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Mail className="absolute left-3 top-3.5 w-4 h-4 text-skull-muted" />
+            </div>
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-[10px] text-skull-muted uppercase tracking-widest font-bold ml-1">
+              Access Code
+            </label>
+            <div className="relative">
+              <input
+                type="password"
+                placeholder="••••••••"
+                required
+                className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white placeholder-white/20 focus:outline-none focus:border-skull-neon-blue transition-colors text-sm"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <Lock className="absolute left-3 top-3.5 w-4 h-4 text-skull-muted" />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-3.5 mt-2 bg-skull-neon-blue text-black font-bold text-sm uppercase tracking-[0.2em] rounded-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg shadow-skull-neon-blue/20"
+          >
+            Create Profile <ArrowRight className="w-4 h-4" />
+          </button>
+        </form>
+
+        <div className="mt-8 pt-6 border-t border-white/10 text-center">
+          <p className="text-xs text-skull-muted">
+            ALREADY AUTHORIZED?{" "}
+            <Link
+              href="/sign-in"
+              className="text-skull-neon-pink hover:text-white uppercase tracking-widest ml-2 transition-colors"
+            >
+              Authenticate
+            </Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
