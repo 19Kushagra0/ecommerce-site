@@ -19,7 +19,7 @@ export default function SignInPage() {
     const { data, error } = await signIn.email({ email, password });
 
     if (error) {
-      setErrorMsg(error.message);
+      setErrorMsg(error.message || "An unknown error occurred");
     } else {
       router.push("/");
       router.refresh();
